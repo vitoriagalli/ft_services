@@ -32,9 +32,11 @@ enable_dashboard()
 
 install_metallb()
 {
-    kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
-    kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
-    kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+    # kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+    # kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+    # # on first install only
+    # kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+    minikube addons enable metallb
 }
 
 build_images()
@@ -52,9 +54,9 @@ if [ "$1" == "apply" ]; then
     apply_config_files
 else
     delete_environment
-    start_minikube
+    # start_minikube
     # install_metallb
     # enable_dashboard
     # build_images
-    apply_config_files
+    # apply_config_files
 fi

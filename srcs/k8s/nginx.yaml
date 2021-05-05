@@ -29,19 +29,19 @@ metadata:
   labels:
     app: nginx
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 80
+      # targetPort: 80
     - name: https
       protocol: TCP
       port: 443
-      targetPort: 443
+      # targetPort: 443
     - name: ssh
       port: 22
       protocol: TCP
-      targetPort: 22
+      # targetPort: 22
