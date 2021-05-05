@@ -49,8 +49,11 @@ build_images()
 
 apply_config_files()
 {
-    kubectl apply -f srcs/k8s/nginx.yaml
     kubectl apply -f srcs/k8s/metallb.yaml
+    kubectl apply -f srcs/k8s/nginx.yaml
+    kubectl apply -f srcs/k8s/mysql.yaml
+    kubectl apply -f srcs/k8s/phpmyadmin.yaml
+    kubectl apply -f srcs/k8s/wordpress.yaml
 }
 
 if [ "$1" == "apply" ]; then
