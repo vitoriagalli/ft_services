@@ -16,18 +16,14 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:5.1
+        image: mysql:5.6
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
         ports:
           - containerPort: 3306
-        env:
-          - name: "MYSQL_ROOT_PASSWORD"
-            value: "123456"
-          - name: "MYSQL_DATABASE"
-            value: "database"
-          - name: "MYSQL_PASSWORD"
-            value: "123456"
+        envFrom:
+          - configMapRef:
+              name: mysql-configmap
 ---
 apiVersion: v1
 kind: Service
@@ -44,3 +40,12 @@ spec:
     port: 3306
     protocol: TCP
     # targetPort: 3306
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-configmap
+data:
+  MYSQL_ROOT_PASSWORD: "123456"
+  MYSQL_DATABASE: "database"
+  MYSQL_PASSWORD: "123456"
