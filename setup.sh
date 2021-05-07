@@ -44,7 +44,7 @@ install_metallb()
 
 build_images()
 {
-    docker build --network=host srcs/nginx -t nginx:vscabell
+    docker build srcs/nginx -t nginx:vscabell
 }
 
 apply_config_files()

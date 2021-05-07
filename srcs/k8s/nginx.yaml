@@ -45,7 +45,7 @@ spec:
         # image: nginx:latest
         image: nginx:vscabell
         imagePullPolicy: Never
-        command: [ "/bin/sh", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        # command: [ "/bin/sh", "-c", "--" ]
+        # args: [ "while true; do sleep 30; done;" ]
         ports:
           - containerPort: 80
