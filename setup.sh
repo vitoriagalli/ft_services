@@ -22,14 +22,14 @@ clean_environment()
 
 start_minikube()
 {
-    # eval $(minikube docker-env)
+    eval $(minikube docker-env)   
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker  
-    minikube addons enable metrics-server
 }
 
-enable_dashboard()
+enable_addons()
 {
+    minikube addons enable metrics-server
     minikube addons enable dashboard
 }
 
@@ -44,20 +44,21 @@ install_metallb()
 
 build_images()
 {
-    docker build srcs/nginx -t nginx:vscabell
+    docker build --network=host srcs/nginx -t nginx:vscabell
 }
 
 apply_config_files()
 {
     kubectl apply -f srcs/k8s/metallb.yaml
     kubectl apply -f srcs/k8s/nginx.yaml
-    kubectl apply -f srcs/k8s/mysql.yaml
+    # kubectl apply -f srcs/k8s/mysql.yaml
     # kubectl apply -f srcs/k8s/phpmyadmin.yaml
-    kubectl apply -f srcs/k8s/wordpress.yaml
+    # kubectl apply -f srcs/k8s/wordpress.yaml
 }
 
 if [ "$1" == "apply" ]; then
     clean_environment
+    build_images
     apply_config_files
 elif [ "$1" == "del" ]; then
     delete_environment
@@ -65,7 +66,7 @@ else
     delete_environment
     start_minikube
     install_metallb
-    enable_dashboard
+    enable_addons
     build_images
     apply_config_files
 fi
