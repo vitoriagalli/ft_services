@@ -32,9 +32,9 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:5.6
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        # image: mysql:latest
+        image: mysql:vscabell
+        imagePullPolicy: Never
         ports:
           - containerPort: 3306
         envFrom:
@@ -47,5 +47,6 @@ metadata:
   name: mysql-configmap
 data:
   MYSQL_ROOT_PASSWORD: "123456"
+  MYSQL_USER: "root"
   MYSQL_DATABASE: "database"
   MYSQL_PASSWORD: "123456"
