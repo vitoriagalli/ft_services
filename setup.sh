@@ -23,9 +23,9 @@ clean_environment()
 
 start_minikube()
 {
-    eval $(minikube docker-env)   
     sudo chmod 666 /var/run/docker.sock 
-    minikube start --driver=docker  
+    minikube start --driver=docker
+    eval $(minikube docker-env)  
 }
 
 enable_addons()
@@ -45,18 +45,18 @@ install_metallb()
 
 build_images()
 {
-    docker build srcs/nginx -t nginx:vscabell
+    # docker build srcs/nginx -t nginx:vscabell
     docker build srcs/mysql -t mysql:vscabell
-    # docker build srcs/wordpress -t wordpress:vscabell
+    docker build srcs/wordpress -t wordpress:vscabell
 }
 
 apply_config_files()
 {
     kubectl apply -f srcs/k8s/metallb.yaml
-    kubectl apply -f srcs/k8s/nginx.yaml
+    # kubectl apply -f srcs/k8s/nginx.yaml
     kubectl apply -f srcs/k8s/mysql.yaml
     # kubectl apply -f srcs/k8s/phpmyadmin.yaml
-    # kubectl apply -f srcs/k8s/wordpress.yaml
+    kubectl apply -f srcs/k8s/wordpress.yaml
 }
 
 if [ "$1" == "apply" ]; then

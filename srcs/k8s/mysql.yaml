@@ -46,7 +46,7 @@ kind: ConfigMap
 metadata:
   name: mysql-configmap
 data:
-  MYSQL_ROOT_PASSWORD: "123456"
-  MYSQL_USER: "root"
-  MYSQL_DATABASE: "database"
-  MYSQL_PASSWORD: "123456"
+  MYSQL_ROOT_PASSWORD: "admin"
+  MYSQL_USER: "admin"
+  MYSQL_DATABASE: "wordpress"
+  MYSQL_PASSWORD: "admin"

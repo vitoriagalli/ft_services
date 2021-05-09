@@ -14,7 +14,7 @@ spec:
     - name: wordpress
       port: 5050
       protocol: TCP
-      # targetPort: 80
+      targetPort: 5050
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,7 +37,7 @@ spec:
         # image: wordpress:4.8-apache
         image: wordpress:vscabell
         imagePullPolicy: Never
-        # command: [ "/bin/bash", "-c", "--" ]
+        # command: [ "/bin/sh", "-c", "--" ]
         # args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 5050
@@ -45,13 +45,52 @@ spec:
         envFrom:
           - configMapRef:
               name: wordpress-configmap
+        volumeMounts:
+          - name: wp-nginx-conf
+            mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: wp-nginx-conf
+        configMap:
+          name: wordpress-configmap
+          items:
+          - key: default.conf
+            path: default.conf     
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: wordpress-configmap
 data:
-  DB_HOST: "mysql"
+  DB_NAME: "wordpress"
   DB_USER: "admin"
-  DB_PASSWORD: "123456"
-  DB_NAME: "wordpress-db"
+  DB_PASSWORD: "admin"
+  DB_HOST: "mysql"
+  default.conf: |
+    server {
+      server_name _;
+      root /var/www/wordpress;
+      index index.php
+      location / {
+        try_files $uri $uri/ =404;
+      }
+
+
+# http {
+
+#   include /etc/nginx/mime.types;
+
+#       server {
+#               listen 80                       default_server;
+#               listen [::]:80          default_server;
+#               server_name                     www;
+
+#               root                            /var/www/wordpress;
+#               index                           index.php;
+
+#               location ~ \.php$ {
+#                       include fastcgi.conf;
+#                       fastcgi_pass 127.0.0.1:9000;
+#                       fastcgi_index index.php;
+#               }
+#       }
+#     }
