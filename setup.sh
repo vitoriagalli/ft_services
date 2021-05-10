@@ -45,7 +45,7 @@ install_metallb()
 
 build_images()
 {
-    # docker build srcs/nginx -t nginx:vscabell
+    docker build srcs/nginx -t nginx:vscabell
     docker build srcs/mysql -t mysql:vscabell
     docker build srcs/wordpress -t wordpress:vscabell
 }
@@ -53,7 +53,7 @@ build_images()
 apply_config_files()
 {
     kubectl apply -f srcs/k8s/metallb.yaml
-    # kubectl apply -f srcs/k8s/nginx.yaml
+    kubectl apply -f srcs/k8s/nginx.yaml
     kubectl apply -f srcs/k8s/mysql.yaml
     # kubectl apply -f srcs/k8s/phpmyadmin.yaml
     kubectl apply -f srcs/k8s/wordpress.yaml
