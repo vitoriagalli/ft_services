@@ -7,7 +7,7 @@ RUN mkdir -p /run/mysqld
 
 # COPY ./my.cnf /etc/mysql/my.cnf
 
-COPY ./init.sh /init.sh
+COPY ./* /
 
 EXPOSE 3306
 
