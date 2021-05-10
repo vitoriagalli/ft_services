@@ -1,7 +1,7 @@
 FROM alpine:3.12
 
 RUN apk update; \
-	apk add --no-cache wget nginx \
+	apk add --no-cache wget nginx lighttpd mysql-client \
     php7 \
     php7-fpm \
     php7-opcache \
@@ -17,12 +17,16 @@ RUN apk update; \
 COPY ./ ./
 
 RUN wget -q http://wordpress.org/wordpress-5.4.2.tar.gz && \
-    mkdir -p /var/www/localhost/wordpress && \
-    tar -xzf wordpress-5.4.2.tar.gz -C /var/www/localhost/ && \
+    mkdir -p /var/www/wordpress && \
+    tar -xzf wordpress-5.4.2.tar.gz -C /var/www/ && \
 	rm -rf wordpress-5.4.2.tar.gz && \
-    mv wp-config.php /var/www/localhost/wordpress/
+    mv wp-config.php /var/www/wordpress/
 
+RUN mkdir -p /run/nginx
 
-EXPOSE 5050 80
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/nginx.conf
+
+EXPOSE 5050
 
 CMD ./start.sh

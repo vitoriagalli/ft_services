@@ -6,4 +6,4 @@
 
 /usr/sbin/nginx -g 'daemon off;'
 
-tail -F /dev/null
+# tail -F /dev/null
