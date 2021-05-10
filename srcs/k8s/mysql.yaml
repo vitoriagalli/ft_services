@@ -47,6 +47,6 @@ metadata:
   name: mysql-configmap
 data:
   MYSQL_ROOT_PASSWORD: "admin"
-  MYSQL_USER: "admin"
   MYSQL_DATABASE: "wordpress"
+  MYSQL_USER: "admin"
   MYSQL_PASSWORD: "admin"

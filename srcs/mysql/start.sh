@@ -4,14 +4,12 @@ if [ ! -d "/run/mysqld" ]; then
   mkdir -p /run/mysqld
 fi
 
+cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+cd /
+
 cat << EOF > config.sql
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.user WHERE User='root' AND HOST NOT IN ('localhost', '127.0.0.1', '::1');
-DROP DATABASE IF EXISTS test;
-DELETE FROM mysql.db WHERE Db='test' or Db='test\\_%';
-CREATE DATABASE wordpress;
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin';
+CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
+GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
 EOF
 
 chmod +w config.sql
