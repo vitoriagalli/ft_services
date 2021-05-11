@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  # annotations:
+  #   metallb.universe.tf/allow-shared-ip: shared
+  labels:
+    app: phpmyadmin
+spec:
+  type: LoadBalancer
+  selector:
+    app: phpmyadmin
+  ports:
+    - name: phpmyadmin
+      port: 5000
+      protocol: TCP
+    #   targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        # image: phpmyadmin:4.8-apache
+        image: phpmyadmin:vscabell
+        imagePullPolicy: Never
+        # command: [ "/bin/sh", "-c", "--" ]
+        # args: [ "while true; do sleep 30; done;" ]
+        ports:
+        - containerPort: 5050
+          name: phpmyadmin
+        # envFrom:
+        #   - configMapRef:
+        #       name: phpmyadmin-configmap
+      #   volumeMounts:
+      #     - mountPath: /etc/nginx/conf.d/
+      #       name: wp-nginx-conf
+      # volumes:
+      # - name: wp-nginx-conf
+      #   configMap:
+      #     name: phpmyadmin-configmap
+      #     items:
+      #     - key: default.conf
+      #       path: default.conf     
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: phpmyadmin-configmap
+# data:
+#   DB_NAME: "phpmyadmin"
+#   DB_USER: "admin"
+#   DB_PASSWORD: "admin"
+#   DB_HOST: "mysql"

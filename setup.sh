@@ -6,10 +6,13 @@ delete_environment()
     kubectl delete services --all 
     kubectl delete pods --all 
     kubectl delete pvc --all 
-    kubectl delete pv --all 
+    kubectl delete pv --all
     minikube stop
     minikube delete
     rm -rf ~/.kube/config
+    docker stop $(docker images -a -q)
+    docker rm $(docker images -a -q)
+    docker rmi $(docker images -a -q)
 }
 
 clean_environment()
@@ -18,7 +21,10 @@ clean_environment()
     kubectl delete services --all 
     kubectl delete pods --all 
     kubectl delete pvc --all 
-    kubectl delete pv --all 
+    kubectl delete pv --all
+    docker stop $(docker images -a -q)
+    docker rm $(docker images -a -q)
+    docker rmi $(docker images -a -q)
 }
 
 start_minikube()
@@ -47,6 +53,7 @@ build_images()
 {
     docker build srcs/nginx -t nginx:vscabell
     docker build srcs/mysql -t mysql:vscabell
+    docker build srcs/phpmyadmin -t phpmyadmin:vscabell
     docker build srcs/wordpress -t wordpress:vscabell
 }
 
@@ -55,7 +62,7 @@ apply_config_files()
     kubectl apply -f srcs/k8s/metallb.yaml
     kubectl apply -f srcs/k8s/nginx.yaml
     kubectl apply -f srcs/k8s/mysql.yaml
-    # kubectl apply -f srcs/k8s/phpmyadmin.yaml
+    kubectl apply -f srcs/k8s/phpmyadmin.yaml
     kubectl apply -f srcs/k8s/wordpress.yaml
 }
 

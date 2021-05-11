@@ -46,8 +46,8 @@ spec:
           - configMapRef:
               name: wordpress-configmap
       #   volumeMounts:
-      #     - name: wp-nginx-conf
-      #       mountPath: /etc/nginx/conf.d/
+      #     - mountPath: /etc/nginx/conf.d/
+      #       name: wp-nginx-conf
       # volumes:
       # - name: wp-nginx-conf
       #   configMap:
@@ -65,11 +65,3 @@ data:
   DB_USER: "admin"
   DB_PASSWORD: "admin"
   DB_HOST: "mysql"
-  # default.conf: |
-  #   server {
-  #     server_name _;
-  #     root /var/www/wordpress;
-  #     index index.php;
-  #     location / {
-  #       try_files $uri $uri/ =404;
-  #     }
