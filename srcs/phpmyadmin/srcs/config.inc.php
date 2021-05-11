@@ -11,7 +11,6 @@ $cfg['Servers'][$i]['host'] = 'mysql';
 $cfg['Servers'][$i]['port'] = 3306;
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
-// $cfg['TempDir'] = '/tmp';
 
 // $cfg['Servers'][$i]['controlhost'] = '';
 // $cfg['Servers'][$i]['controlport'] = '';

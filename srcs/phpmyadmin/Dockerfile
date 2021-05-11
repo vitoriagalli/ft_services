@@ -6,7 +6,7 @@ RUN apk update; \
     php7-mysqli php7-opcache php7-curl php7-json \
     php7-gd php7-zlib php7-iconv php7-xml 
 
-COPY ./ /
+COPY srcs/ ./
 
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.tar.gz && \
     tar -xzf phpMyAdmin-5.1.0-english.tar.gz && \
@@ -15,10 +15,8 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.
     mv config.inc.php /var/www/phpmyadmin/config.inc.php && \
     rm -rf phpMyAdmin-5.1.0-english.tar.gz phpMyAdmin-5.1.0-english
     
-RUN mkdir -p /run/nginx
-
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY ./default.conf /etc/nginx/nginx.conf
+RUN mkdir -p /run/nginx; \
+    mv pma-nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 5000
 
