@@ -18,11 +18,12 @@ RUN apk update; \
 
 COPY ./ /
 
-RUN wget -q https://phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.gz && \
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.tar.gz && \
     mkdir -p /var/www/phpmyadmin && \
-    tar -xzf phpMyAdmin-latest-english.tar.gz -C /var/www/phpmyadmin --strip-components 1 && \
-    mv config.inc.php /var/www/phpmyadmin && \
-    rm -f phpMyAdmin-latest-english.tar.gz
+    tar -xzf phpMyAdmin-5.1.0-english.tar.gz -C /var/www/ && \
+    mv /var/www/phpMyAdmin-5.1.0-english/* /var/www/phpmyadmin/ && \
+    rm -rf phpMyAdmin-5.1.0-english.tar.gz && \
+    mv config.inc.php /var/www/phpmyadmin/config.inc.php
 
 RUN mkdir -p /run/nginx
 

@@ -16,7 +16,7 @@ RUN apk update; \
 
 COPY ./ ./
 
-RUN wget -q http://wordpress.org/wordpress-5.4.2.tar.gz && \
+RUN wget http://wordpress.org/wordpress-5.4.2.tar.gz && \
     mkdir -p /var/www/wordpress && \
     tar -xzf wordpress-5.4.2.tar.gz -C /var/www/ && \
 	rm -rf wordpress-5.4.2.tar.gz && \

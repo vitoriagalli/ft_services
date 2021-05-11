@@ -31,7 +31,7 @@ start_minikube()
 {
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker
-    eval $(minikube docker-env)  
+    # eval $(minikube docker-env)  
 }
 
 enable_addons()
@@ -51,6 +51,7 @@ install_metallb()
 
 build_images()
 {
+    eval $(minikube docker-env)  
     docker build srcs/nginx -t nginx:vscabell
     docker build srcs/mysql -t mysql:vscabell
     docker build srcs/phpmyadmin -t phpmyadmin:vscabell
