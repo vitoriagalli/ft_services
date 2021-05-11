@@ -10,9 +10,10 @@ delete_environment()
     minikube stop
     minikube delete
     rm -rf ~/.kube/config
-    docker stop $(docker images -a -q)
-    docker rm $(docker images -a -q)
-    docker rmi $(docker images -a -q)
+    # eval $(minikube docker-env)  
+    # docker stop $(docker images -a -q)
+    # docker rm $(docker images -a -q)
+    # docker rmi $(docker images -a -q)
 }
 
 clean_environment()
@@ -22,9 +23,10 @@ clean_environment()
     kubectl delete pods --all 
     kubectl delete pvc --all 
     kubectl delete pv --all
-    docker stop $(docker images -a -q)
-    docker rm $(docker images -a -q)
-    docker rmi $(docker images -a -q)
+    # eval $(minikube docker-env)  
+    # docker stop $(docker images -a -q)
+    # docker rm $(docker images -a -q)
+    # docker rmi $(docker images -a -q)
 }
 
 start_minikube()
@@ -66,6 +68,7 @@ apply_config_files()
     kubectl apply -f srcs/k8s/phpmyadmin.yaml
     kubectl apply -f srcs/k8s/wordpress.yaml
 }
+
 
 if [ "$1" == "apply" ]; then
     clean_environment
