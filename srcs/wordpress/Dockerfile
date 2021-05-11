@@ -27,6 +27,8 @@ RUN mkdir -p /run/nginx
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./default.conf /etc/nginx/nginx.conf
 
+RUN apk add vim
+
 EXPOSE 5050
 
 CMD ./start.sh
