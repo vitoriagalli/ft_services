@@ -5,7 +5,7 @@ RUN apk update; \
 
 RUN mkdir -p /run/nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+# COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./index.html /var/www/index.html
 
 RUN openssl req -x509 -nodes -days 365 \

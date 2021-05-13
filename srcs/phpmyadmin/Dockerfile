@@ -1,7 +1,7 @@
 FROM alpine:3.12
 
 RUN apk update; \
-	apk add --no-cache wget nginx vim openssl \
+	apk add --no-cache wget nginx openssl vim \
     php7 php7-fpm php7-openssl php7-session php7-mbstring \
     php7-mysqli php7-opcache php7-curl php7-json \
     php7-gd php7-zlib php7-iconv php7-xml 
