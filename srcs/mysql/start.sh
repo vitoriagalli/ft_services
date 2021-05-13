@@ -13,19 +13,10 @@ GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'
 FLUSH PRIVILEGES;
 EOF
 
-
-
 chmod +w config.sql
 
 mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql
 
-# mysqld --user=root --skip_networking=0 --init-file=/config.sql
+mysqld --user=root --skip_networking=0 --init-file=/config.sql & \
 
-
-mysqld --user=root --skip_networking=0 --init-file=/wordpress.sql
-
-
-
-
-
-
+sleep 10 && mysql wordpress < wordpress.sql; tail -F /dev/null

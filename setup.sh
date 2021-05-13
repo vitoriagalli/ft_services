@@ -34,9 +34,9 @@ clean_environment()
 
 start_minikube()
 {
+    eval $(minikube docker-env)
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker
-    # eval $(minikube docker-env)
 }
 
 enable_addons()
