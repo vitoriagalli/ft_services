@@ -5,14 +5,14 @@ delete_environment()
     kubectl delete deployments --all 
     kubectl delete services --all 
     kubectl delete pods --all
-    kubectl delete pv --all
-    kubectl delete pvc --all 
-    kubectl delete sc --all 
+    # kubectl delete pv --all
+    # kubectl delete pvc --all 
+    # kubectl delete sc --all 
     kubectl delete cm --all 
     minikube stop
     minikube delete
     rm -rf ~/.kube/config
-    eval $(minikube docker-env)  
+    eval $(minikube docker-env)
     docker stop $(docker images -a -q)
     docker rm $(docker images -a -q)
     docker rmi $(docker images -a -q)
@@ -23,9 +23,9 @@ clean_environment()
     kubectl delete deployments --all 
     kubectl delete services --all 
     kubectl delete pods --all 
-    kubectl delete pvc --all 
-    kubectl delete pv --all
-    kubectl delete cm --all
+    # kubectl delete pvc --all 
+    # kubectl delete pv --all
+    # kubectl delete cm --all
     eval $(minikube docker-env)  
     docker stop $(docker images -a -q)
     docker rm $(docker images -a -q)
@@ -56,7 +56,7 @@ install_metallb()
 
 build_images()
 {
-    eval $(minikube docker-env)  
+    eval $(minikube docker-env)
     docker build srcs/nginx -t nginx:vscabell
     docker build srcs/mysql -t mysql:vscabell
     docker build srcs/phpmyadmin -t phpmyadmin:vscabell
@@ -87,4 +87,5 @@ else
     build_images
     apply_config_files
 fi
+
 minikube dashboard &> /dev/null &
