@@ -36,7 +36,7 @@ start_minikube()
 {
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker
-    # eval $(minikube docker-env)  
+    # eval $(minikube docker-env)
 }
 
 enable_addons()
