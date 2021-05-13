@@ -6,8 +6,6 @@ RUN apk update; \
 COPY start.sh /
 COPY wordpress.sql /
 
-# COPY /* /
-
 EXPOSE 3306
 
 CMD ./start.sh
