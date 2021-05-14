@@ -57,21 +57,21 @@ data:
   MYSQL_DATABASE: "wordpress"
   MYSQL_USER: "admin"
   MYSQL_PASSWORD: "admin"
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#     name: mysql-pv
-#     labels:
-#         type: local
-# spec:
-#     storageClassName: manual
-#     capacity:
-#         storage: 1Gi
-#     accessModes:
-#         - ReadWriteOnce
-#     hostPath:
-#         path: "/mnt/mysql"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: mysql-pv
+    labels:
+        type: local
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/mysql"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
