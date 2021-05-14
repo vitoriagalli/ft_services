@@ -18,7 +18,7 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
  $cfg['Servers'][$i]['controlpass'] = 'admin';
  
  // check this
- $cfg['PmaAbsoluteUri'] = 'https://192.168.49.3:5000/index.php';
+//  $cfg['PmaAbsoluteUri'] = 'https://192.168.49.3:5000/index.php';
 
  $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';
  $cfg['Servers'][$i]['bookmarktable'] = 'pma__bookmark';

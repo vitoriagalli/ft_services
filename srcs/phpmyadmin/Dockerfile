@@ -28,6 +28,4 @@ RUN mkdir -p /run/nginx; \
 
 EXPOSE 5000
 
-RUN echo "alo"
-
 CMD ./start.sh
