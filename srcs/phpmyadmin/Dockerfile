@@ -23,7 +23,7 @@ RUN openssl req -x509 -nodes -days 365 \
     chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
 
 RUN mkdir -p /run/nginx; \
-    cp pma-nginx.conf /etc/nginx/nginx.conf 
+    mv pma-nginx.conf /etc/nginx/nginx.conf 
     # cp pma-nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 5000

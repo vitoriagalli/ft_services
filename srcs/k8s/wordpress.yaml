@@ -45,13 +45,13 @@ spec:
         envFrom:
           - configMapRef:
               name: wordpress-configmap
-        volumeMounts:
-          - name: mysql-persistent-storage
-            mountPath: /var/www/wordpress
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+      #   volumeMounts:
+      #     - name: mysql-persistent-storage
+      #       mountPath: /var/www/wordpress
+      # volumes:
+      # - name: mysql-persistent-storage
+      #   persistentVolumeClaim:
+      #     claimName: mysql-pv-claim
 ---
 apiVersion: v1
 kind: ConfigMap
