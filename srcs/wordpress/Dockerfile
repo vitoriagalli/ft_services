@@ -15,7 +15,7 @@ RUN wget http://wordpress.org/wordpress-5.4.2.tar.gz && \
 	rm -rf wordpress-5.4.2.tar.gz
 
 RUN mkdir -p /run/nginx; \
-    cp wp-nginx.conf /etc/nginx/nginx.conf
+    mv wp-nginx.conf /etc/nginx/nginx.conf
     # cp wp-nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN openssl req -x509 -nodes -days 365 \
