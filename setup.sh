@@ -2,20 +2,18 @@
 
 delete_environment()
 {
-    kubectl delete deployments --all 
-    kubectl delete services --all 
-    kubectl delete pods --all
-    # kubectl delete pv --all
-    # kubectl delete pvc --all 
-    # kubectl delete sc --all 
-    kubectl delete cm --all 
+    # minikube stop
+    # minikube delete
+    # rm -rf ~/.kube/config
+    # eval $(minikube docker-env)
+    # docker stop $(docker images -a -q)
+    # docker rm $(docker images -a -q)
+    # docker rmi $(docker images -a -q)
     minikube stop
     minikube delete
     rm -rf ~/.kube/config
-    eval $(minikube docker-env)
-    docker stop $(docker images -a -q)
-    docker rm $(docker images -a -q)
-    docker rmi $(docker images -a -q)
+    docker rm -f $(docker ps -aq --filter name=k8s)
+    docker rmi -f $(docker images -aq --filter name=vscabell)
 }
 
 clean_environment()
@@ -25,11 +23,13 @@ clean_environment()
     kubectl delete pods --all 
     # kubectl delete pvc --all 
     # kubectl delete pv --all
+    # kubectl delete sc --all 
     # kubectl delete cm --all
-    eval $(minikube docker-env)  
-    docker stop $(docker images -a -q)
-    docker rm $(docker images -a -q)
-    docker rmi $(docker images -a -q)
+    
+    # eval $(minikube docker-env)  
+    docker stop -f $(docker ps -aq --filter name=k8s)
+    docker rm -f $(docker ps -aq --filter name=k8s)
+    docker rmi -f $(docker images -aq --filter name=vscabell)
 }
 
 start_minikube()
@@ -37,10 +37,12 @@ start_minikube()
     eval $(minikube docker-env)
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker
+    IP=$(minikube ip)
 }
 
 enable_addons()
 {
+    minikube addons enable storage-provisioner
     minikube addons enable metrics-server
     minikube addons enable dashboard
 }
@@ -71,7 +73,6 @@ apply_config_files()
     kubectl apply -f srcs/k8s/phpmyadmin.yaml
     kubectl apply -f srcs/k8s/wordpress.yaml
 }
-
 
 if [ "$1" == "apply" ]; then
     clean_environment
