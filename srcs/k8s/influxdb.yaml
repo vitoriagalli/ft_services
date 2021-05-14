@@ -7,7 +7,9 @@ metadata:
   labels:
     app: influxdb
 spec:
-  type: ClusterIP
+  # type: ClusterIP
+  # mudar depois!!
+  type: LoadBalancer
   selector:
     app: influxdb
   ports:
