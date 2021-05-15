@@ -16,5 +16,5 @@ RUN mkdir -p /etc/telegraf; \
 
 EXPOSE 3000
 
-ENTRYPOINT ["grafana-server"]
-# CMD ["sh", "start.sh"]
+# ENTRYPOINT ["grafana-server"]
+CMD ["sh", "start.sh"]
