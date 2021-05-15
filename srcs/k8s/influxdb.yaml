@@ -7,9 +7,7 @@ metadata:
   labels:
     app: influxdb
 spec:
-  # type: ClusterIP
-  # mudar depois!!
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: influxdb
   ports:
@@ -35,9 +33,9 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: influxdb:1.0
-        # image: influxdb:vscabell
-        # imagePullPolicy: Never
+        # image: influxdb:1.0
+        image: influxdb:vscabell
+        imagePullPolicy: Never
         ports:
           - containerPort: 8086
         volumeMounts:
