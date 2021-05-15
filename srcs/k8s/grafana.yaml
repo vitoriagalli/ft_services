@@ -33,9 +33,9 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana:7.5.2
-        # image: grafana:vscabell
-        # imagePullPolicy: Never
+        # image: grafana/grafana:7.5.2
+        image: grafana:vscabell
+        imagePullPolicy: Never
         ports:
           - containerPort: 3000
         volumeMounts:
