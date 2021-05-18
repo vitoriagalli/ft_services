@@ -4,12 +4,9 @@
 /usr/sbin/influxd &
 sleep 5
 
-influx -execute "CREATE DATABASE metrics"
-influx -execute "USE metrics"
-influx -execute "CREATE USER robitett WITH PASSWORD 'Nj7kV6oTpF'"
-influx -execute "GRANT ALL ON metrics TO robitett"
-
-# ./livenessprobe.sh
-
+influx -execute "CREATE DATABASE telegraf"
+influx -execute "USE telegraf"
+influx -execute "CREATE USER admin WITH PASSWORD 'admin'"
+influx -execute "GRANT ALL ON metrics TO admin"
 
 tail -F /dev/null
