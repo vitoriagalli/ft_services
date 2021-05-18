@@ -12,4 +12,4 @@ COPY wordpress.sql /
 
 EXPOSE 3306
 
-CMD ./start.sh
+CMD ["sh", "start.sh"]

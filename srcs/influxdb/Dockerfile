@@ -13,4 +13,4 @@ COPY ../influxdb/srcs/telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE	8086
 
-CMD ./start.sh
+CMD ["sh", "start.sh"]

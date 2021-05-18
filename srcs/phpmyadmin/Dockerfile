@@ -32,4 +32,4 @@ RUN mkdir -p /run/nginx; \
 
 EXPOSE 5000
 
-CMD ./start.sh
+CMD ["sh", "start.sh"]

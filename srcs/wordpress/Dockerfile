@@ -31,4 +31,4 @@ RUN openssl req -x509 -nodes -days 365 \
 
 EXPOSE 5050
 
-CMD ./start.sh
+CMD ["sh", "start.sh"]
