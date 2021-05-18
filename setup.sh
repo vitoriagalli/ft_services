@@ -87,7 +87,7 @@ if [ "$1" == "apply" ]; then
 elif [ "$1" == "del" ]; then
     delete_environment
 else
-    delete_environment
+    # delete_environment
     start_minikube
     install_metallb
     enable_addons
