@@ -15,6 +15,10 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.
     mv config.inc.php /var/www/phpmyadmin/config.inc.php && \
     rm -rf phpMyAdmin-5.1.0-english.tar.gz phpMyAdmin-5.1.0-english
 
+RUN apk add --no-cache telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
+    mkdir -p /etc/telegraf
+COPY ../influxdb/srcs/telegraf.conf /etc/telegraf/telegraf.conf
+
 RUN openssl req -x509 -nodes -days 365 \
 	-newkey rsa:2048 \
 	-subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/OU=IT/CN=vscabell" \

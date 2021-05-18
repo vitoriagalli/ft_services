@@ -8,8 +8,9 @@ RUN apk update; \
 
 COPY srcs/ /
 
-RUN mkdir -p /etc/telegraf; \
-    mv telegraf.conf /etc/telegraf/telegraf.conf
+RUN apk add --no-cache telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
+    mkdir -p /etc/telegraf
+COPY ../influxdb/srcs/telegraf.conf /etc/telegraf/telegraf.conf
 
 ENV PATH=/grafana-7.5.6/bin:$PATH
 
