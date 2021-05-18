@@ -21,4 +21,6 @@ RUN openssl req -x509 -nodes -days 365 \
 
 EXPOSE 80 443 22
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY start.sh /
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "start.sh"]
