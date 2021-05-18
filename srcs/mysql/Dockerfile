@@ -1,14 +1,13 @@
 FROM alpine:3.12
 
 RUN apk update; \
-	apk add --no-cache mysql mysql-client vim
+	apk add --no-cache mysql mysql-client vim \
+    telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
-RUN apk add --no-cache telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
-    mkdir -p /etc/telegraf
-COPY telegraf.conf /etc/telegraf/telegraf.conf
+COPY srcs/ ./
 
-COPY start.sh /
-COPY wordpress.sql /
+RUN mkdir -p /etc/telegraf; \
+    mv telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE 3306
 

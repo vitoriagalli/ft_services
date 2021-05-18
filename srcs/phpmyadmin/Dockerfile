@@ -4,7 +4,8 @@ RUN apk update; \
     apk add --no-cache wget nginx openssl vim \
     php7 php7-fpm php7-openssl php7-session php7-mbstring \
     php7-mysqli php7-opcache php7-curl php7-json \
-    php7-gd php7-zlib php7-iconv php7-xml 
+    php7-gd php7-zlib php7-iconv php7-xml \
+    telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
 COPY srcs/ ./
 
@@ -15,9 +16,8 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.
     mv config.inc.php /var/www/phpmyadmin/config.inc.php && \
     rm -rf phpMyAdmin-5.1.0-english.tar.gz phpMyAdmin-5.1.0-english
 
-RUN apk add --no-cache telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
-    mkdir -p /etc/telegraf
-COPY srcs/telegraf.conf /etc/telegraf/telegraf.conf
+RUN mkdir -p /etc/telegraf; \
+    mv telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN openssl req -x509 -nodes -days 365 \
     -newkey rsa:2048 \

@@ -80,6 +80,7 @@ apply_config_files()
 }
 
 eval $(minikube docker-env)
+
 if [ "$1" == "apply" ]; then
     clean_environment
     build_images

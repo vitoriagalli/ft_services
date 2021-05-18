@@ -1,16 +1,17 @@
 FROM alpine:3.12
 
 RUN apk update; \
-    apk add --no-cache nginx openssh openssl vim;
+    apk add --no-cache nginx openssh openssl vim \
+    telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
-RUN apk add --no-cache telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted && \
-    mkdir -p /etc/telegraf
-COPY telegraf.conf /etc/telegraf/telegraf.conf
+COPY srcs/ ./
 
-RUN mkdir -p /run/nginx
-COPY ./nginx.conf /etc/nginx/nginx.conf
-# COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./index.html /var/www/index.html
+RUN mkdir -p /etc/telegraf && \
+    mv telegraf.conf /etc/telegraf/telegraf.conf
+
+RUN mkdir -p /run/nginx && \
+    mv nginx.conf /etc/nginx/nginx.conf && \
+    mv index.html /var/www/index.html
 
 RUN openssl req -x509 -nodes -days 365 \
     -newkey rsa:2048 \
@@ -21,6 +22,4 @@ RUN openssl req -x509 -nodes -days 365 \
 
 EXPOSE 80 443 22
 
-COPY start.sh /
-# CMD ["nginx", "-g", "daemon off;"]
 CMD ["sh", "start.sh"]
