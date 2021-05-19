@@ -11,9 +11,12 @@ spec:
   selector:
     app: ftps
   ports:
-    - name: http
+    - name: ftps
       protocol: TCP
       port: 21
+    - name: ftps-data
+      protocol: TCP
+      port: 10000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,10 +36,47 @@ spec:
     spec:
       containers:
       - name: ftps
-        # image: ftps:latest
+        # image: fauria/vsftpd
         image: ftps:vscabell
         imagePullPolicy: Never
         # command: [ "/bin/sh", "-c", "--" ]
         # args: [ "while true; do sleep 30; done;" ]
         ports:
-          - containerPort: 21
+          - name: ftps
+            containerPort: 21
+        ports:
+          - name: ftps-data
+            containerPort: 10000
+        # volumeMounts:
+        #   - mountPath: "/home/vsftpd"
+        #     name: ftps-pv-storage
+        # env:
+        #   - name: FTP_USER
+        #     value: "user"
+        #   - name: FTP_PASS
+        #     value: "pass1234"
+# ---
+# kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: ftps-pv-volume
+#   labels:
+#     type: local
+# spec:
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/tmp/data"
+# ---
+#   kind: PersistentVolumeClaim
+#   apiVersion: v1
+#   metadata:
+#     name: ftps-pv-claim
+#   spec:
+#     accessModes:
+#       - ReadWriteOnce
+#     resources:
+#       requests:
+#         storage: 1Gi
