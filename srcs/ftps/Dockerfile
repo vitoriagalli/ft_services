@@ -7,14 +7,20 @@ RUN apk update; \
 COPY srcs/ ./
 
 RUN mkdir -p /etc/telegraf && \
-    mv telegraf.conf /etc/telegraf/telegraf.conf
+    mv telegraf.conf /etc/telegraf/telegraf.conf;
+
+RUN mkdir -p /etc/vsftpd/ && \
+    mv vsftpd.conf /etc/vsftpd/vsftpd.conf
 
 RUN openssl req -x509 -nodes -days 365 \
     -newkey rsa:2048 \
     -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/OU=IT/CN=vscabell" \
-    -keyout /etc/ssl/private/nginx-selfsigned.key \
-    -out /etc/ssl/certs/nginx-selfsigned.crt && \
-    chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
+    -keyout /etc/ssl/private/ftps-selfsigned.key \
+    -out /etc/ssl/certs/ftps-selfsigned.crt && \
+    chmod 600 /etc/ssl/private/ftps-selfsigned.key /etc/ssl/certs/ftps-selfsigned.crt
+
+RUN adduser -D admin && \
+    echo admin:admin | chpasswd
 
 EXPOSE 21
 
