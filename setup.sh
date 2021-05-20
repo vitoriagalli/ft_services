@@ -13,8 +13,8 @@ delete_environment()
     minikube delete
     rm -rf ~/.kube/config
     # eval $(minikube docker-env)  
-    docker rm -f $(docker ps -aq --filter name=k8s)
-    docker rmi -f $(docker images -aq --filter name=vscabell)
+    # docker rm -f $(docker ps -aq --filter name=k8s)
+    # docker rmi -f $(docker images -aq --filter name=vscabell)
 }
 
 clean_environment()

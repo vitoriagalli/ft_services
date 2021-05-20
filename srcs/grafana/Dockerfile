@@ -15,7 +15,7 @@ RUN mv datasource.yaml grafana-7.5.6/conf/provisioning/datasources/datasource.ya
     # cp grafana_dashboard.json /var/lib/grafana/dashboards/grafana_dashboard.json;
     # mv defaults.ini grafana-7.5.6/conf/
 
-COPY srcs/dashs/ ./
+# COPY srcs/dashs/ ./
 
 # RUN mkdir -p /var/lib/grafana/dashboards; \
 #     cp *.json /var/lib/grafana/dashboards/
