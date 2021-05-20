@@ -38,7 +38,6 @@ start_minikube()
     # eval $(minikube docker-env)
     sudo chmod 666 /var/run/docker.sock 
     minikube start --driver=docker
-    IP=$(minikube ip)
 }
 
 enable_addons()
@@ -55,19 +54,28 @@ install_metallb()
     # # on first install only
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
     minikube addons enable metallb
+}
 
+atribute_ip()
+{
+    MINIKUBEIP=$(minikube ip)
+    
+    IP=${MINIKUBEIP::-1}"$((${MINIKUBEIP: -1} + 1))"
 
-    FIRSTIP=${IP::-1}"$((${IP: -1} + 1))"
+    # tmp=$IP
+    # while [ ${tmp: -1} != '.' ]
+    # do
+    #     tmp=${tmp::-1}
+    # done
 
-    tmp=$IP
-    while [ ${tmp: -1} != '.' ]
-    do
-        tmp=${tmp::-1}
-    done
+    # LASTIP=$tmp"249"
 
-    LASTIP=$tmp"249"
+    sed -i "s/FIRSTIP-LASTIP/$IP-$IP/g" ./srcs/k8s/metallb.yaml
 
-    sed -i "s/FIRSTIP-LASTIP/$FIRSTIP-$LASTIP/g" ./srcs/k8s/metallb.yaml
+    sed -i "s/IP/$IP/g" ./srcs/ftps/srcs/vsftpd.conf
+
+    sed -i "s/CLUSTER_IP/$IP/g" ./srcs/mysql/srcs/wordpress.sql
+
 }
 
 build_images()
@@ -107,6 +115,7 @@ else
     start_minikube
     install_metallb
     enable_addons
+    atribute_ip
     build_images
     apply_config_files
 fi
