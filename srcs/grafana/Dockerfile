@@ -10,10 +10,15 @@ RUN apk update; \
 COPY srcs/ ./
 
 RUN mv datasource.yaml grafana-7.5.6/conf/provisioning/datasources/datasource.yaml; \
-    mv dashboard.yaml grafana-7.5.6/conf/provisioning/dashboards/dashboard.yaml; \
-    mkdir -p /var/lib/grafana/dashboards && \
-    mv grafana_dashboard.json /var/lib/grafana/dashboards/grafana_dashboard.json;
+    mv dashboard.yaml grafana-7.5.6/conf/provisioning/dashboards/dashboard.yaml
+    # mkdir -p /var/lib/grafana/dashboards && \
+    # cp grafana_dashboard.json /var/lib/grafana/dashboards/grafana_dashboard.json;
     # mv defaults.ini grafana-7.5.6/conf/
+
+COPY srcs/dashs/ ./
+
+# RUN mkdir -p /var/lib/grafana/dashboards; \
+#     cp *.json /var/lib/grafana/dashboards/
 
 RUN mkdir -p /etc/telegraf; \
     mv telegraf.conf /etc/telegraf/telegraf.conf;
@@ -26,3 +31,4 @@ CMD ["sh", "start.sh"]
 
 
 # SHOW TAG VALUES FROM system WITH KEY=host
+# /([a-zA-Z0-9\.]+)/
