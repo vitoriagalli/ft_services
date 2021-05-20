@@ -61,24 +61,24 @@ build_images()
 {
     eval $(minikube docker-env)
     docker build srcs/nginx -t nginx:vscabell
+    docker build srcs/ftps -t ftps:vscabell
     docker build srcs/mysql -t mysql:vscabell
     docker build srcs/phpmyadmin -t phpmyadmin:vscabell
     docker build srcs/wordpress -t wordpress:vscabell
     docker build srcs/grafana -t grafana:vscabell
     docker build srcs/influxdb -t influxdb:vscabell
-    docker build srcs/ftps -t ftps:vscabell
 }
 
 apply_config_files()
 {
     kubectl apply -f srcs/k8s/metallb.yaml
     kubectl apply -f srcs/k8s/nginx.yaml
+    kubectl apply -f srcs/k8s/ftps.yaml
     kubectl apply -f srcs/k8s/mysql.yaml
     kubectl apply -f srcs/k8s/phpmyadmin.yaml
     kubectl apply -f srcs/k8s/wordpress.yaml
     kubectl apply -f srcs/k8s/grafana.yaml
     kubectl apply -f srcs/k8s/influxdb.yaml
-    kubectl apply -f srcs/k8s/ftps.yaml
 }
 
 eval $(minikube docker-env)
@@ -90,7 +90,7 @@ if [ "$1" == "apply" ]; then
 elif [ "$1" == "del" ]; then
     delete_environment
 else
-    # delete_environment
+    delete_environment
     start_minikube
     install_metallb
     enable_addons
