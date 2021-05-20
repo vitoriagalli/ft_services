@@ -16,7 +16,7 @@ spec:
       port: 21
     - name: ftps-data
       protocol: TCP
-      port: 10000
+      port: 30000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -44,9 +44,8 @@ spec:
         ports:
           - name: ftps
             containerPort: 21
-        ports:
           - name: ftps-data
-            containerPort: 10000
+            containerPort: 30000
         # volumeMounts:
         #   - mountPath: "/home/vsftpd"
         #     name: ftps-pv-storage
