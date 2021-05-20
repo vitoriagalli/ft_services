@@ -42,9 +42,9 @@ spec:
         ports:
         - containerPort: 5050
           name: wordpress
-        envFrom:
-          - configMapRef:
-              name: wordpress-configmap
+        # envFrom:
+        #   - configMapRef:
+        #       name: wordpress-configmap
       #   volumeMounts:
       #     - name: mysql-persistent-storage
       #       mountPath: /var/www/wordpress
@@ -52,13 +52,13 @@ spec:
       # - name: mysql-persistent-storage
       #   persistentVolumeClaim:
       #     claimName: mysql-pv-claim
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: wordpress-configmap
-data:
-  DB_NAME: "wordpress"
-  DB_USER: "admin"
-  DB_PASSWORD: "admin"
-  DB_HOST: "mysql"
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: wordpress-configmap
+# data:
+#   DB_NAME: "wordpress"
+#   DB_USER: "admin"
+#   DB_PASSWORD: "admin"
+#   DB_HOST: "mysql"
