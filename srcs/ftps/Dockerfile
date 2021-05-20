@@ -22,6 +22,20 @@ RUN openssl req -x509 -nodes -days 365 \
 RUN adduser -D admin && \
     echo admin:admin | chpasswd
 
-EXPOSE 21
+EXPOSE 21 30000
 
 CMD ["sh", "start.sh"]
+
+
+
+# curl ftps://admin:admin@192.168.49.3:21 -T README.md 
+# curl -k --ftp-ssl -u admin:admin ftp://192.168.49.3:21
+# curl -k --ftp-ssl -u admin:admin ftp://192.168.49.3:21 -T <FILE> 
+# curl -k --ftp-ssl -u admin:admin ftp://192.168.49.3:21/<FILE> -o download.md 
+
+
+
+# sudo dpkg --configure -a
+# sudo apt install lftp -y
+# lftp -e 'set ssl:verify-certificate false' -u admin,admin -p 192.168.49.3:21
+
