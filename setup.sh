@@ -55,6 +55,19 @@ install_metallb()
     # # on first install only
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
     minikube addons enable metallb
+
+
+    FIRSTIP=${IP::-1}"$((${IP: -1} + 1))"
+
+    tmp=$IP
+    while [ ${tmp: -1} != '.' ]
+    do
+        tmp=${tmp::-1}
+    done
+
+    LASTIP=$tmp"249"
+
+    sed -i "s/FIRSTIP-LASTIP/$FIRSTIP-$LASTIP/g" ./srcs/k8s/metallb.yaml
 }
 
 build_images()
