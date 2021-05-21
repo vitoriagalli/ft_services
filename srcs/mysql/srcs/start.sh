@@ -8,8 +8,8 @@ cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 cd /
 
 cat << EOF > config.sql
-CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
-GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+CREATE DATABASE IF NOT EXISTS wordpress;
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin';
 FLUSH PRIVILEGES;
 EOF
 

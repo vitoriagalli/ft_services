@@ -39,9 +39,9 @@ spec:
         imagePullPolicy: Never
         ports:
           - containerPort: 3306
-        envFrom:
-          - configMapRef:
-              name: mysql-configmap
+        # envFrom:
+        #   - configMapRef:
+        #       name: mysql-configmap
         volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
@@ -49,16 +49,16 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-configmap
-data:
-  MYSQL_ROOT_PASSWORD: "admin"
-  MYSQL_DATABASE: "wordpress"
-  MYSQL_USER: "admin"
-  MYSQL_PASSWORD: "admin"
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: mysql-configmap
+# data:
+#   MYSQL_ROOT_PASSWORD: "admin"
+#   MYSQL_DATABASE: "wordpress"
+#   MYSQL_USER: "admin"
+#   MYSQL_PASSWORD: "admin"
 ---
 apiVersion: v1
 kind: PersistentVolume
