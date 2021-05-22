@@ -118,7 +118,7 @@
 start_environment()
 {
     sudo chmod 666 /var/run/docker.sock 
-    minikube --cpus=2 --memory 4000 start --driver=docker
+    minikube --cpus=2 --memory 3000 start --driver=docker
     minikube addons enable storage-provisioner
     minikube addons enable metrics-server
     minikube addons enable dashboard
@@ -208,10 +208,10 @@ if [ "$1" == "apply" ]; then
 elif [ "$1" == "del" ]; then
     delete_environment
 else
-    # delete_environment
-    # start_environment
+    delete_environment
+    start_environment
     eval $(minikube docker-env)
-    # install_metallb
+    install_metallb
     atribute_ip
     build_images
     apply_config
