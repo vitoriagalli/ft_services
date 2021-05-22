@@ -1,7 +1,7 @@
 FROM alpine:3.12
 
 RUN apk update; \
-    apk add --no-cache nginx openssh openssl vim \
+    apk add --no-cache nginx openssl vim \
     telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
 COPY srcs/ ./
@@ -20,6 +20,6 @@ RUN openssl req -x509 -nodes -days 365 \
     -out /etc/ssl/certs/nginx-selfsigned.crt && \
     chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
 
-EXPOSE 80 443 22
+EXPOSE 80 443
 
 CMD ["sh", "start.sh"]

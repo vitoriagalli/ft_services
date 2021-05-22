@@ -19,10 +19,6 @@ spec:
       protocol: TCP
       port: 443
       # targetPort: 443
-    - name: ssh
-      port: 22
-      protocol: TCP
-      # targetPort: 22
 ---
 apiVersion: apps/v1
 kind: Deployment
