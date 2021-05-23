@@ -57,19 +57,14 @@ clean_config()
     echo ""
     echo -e "\033[1mClean configuration files...\033[0m"
 
-    kubectl delete -f srcs/k8s/metallb.yaml && \
-    kubectl delete -f srcs/k8s/nginx.yaml && \
-    kubectl delete -f srcs/k8s/ftps.yaml && \
-    kubectl delete -f srcs/k8s/mysql.yaml && \
-    kubectl delete -f srcs/k8s/phpmyadmin.yaml && \
-    kubectl delete -f srcs/k8s/wordpress.yaml && \
-    kubectl delete -f srcs/k8s/grafana.yaml && \
+    kubectl delete -f srcs/k8s/metallb.yaml
+    kubectl delete -f srcs/k8s/nginx.yaml
+    kubectl delete -f srcs/k8s/ftps.yaml
+    kubectl delete -f srcs/k8s/mysql.yaml
+    kubectl delete -f srcs/k8s/phpmyadmin.yaml
+    kubectl delete -f srcs/k8s/wordpress.yaml
+    kubectl delete -f srcs/k8s/grafana.yaml
     kubectl delete -f srcs/k8s/influxdb.yaml
-
-    if [ $? -ne 0 ]; then
-        echo "Error"
-        exit
-    fi
 }
 
 build_images()
@@ -106,6 +101,7 @@ build_images()
     echo "created" && \
 
     if [ $? -ne 0 ]; then
+        echo ""
         echo "Error"
         exit
     fi
@@ -116,20 +112,15 @@ clean_images()
     echo ""
     echo -e "\033[1mClean images...\033[0m"
 
-    docker stop $(docker ps -aq --filter name=k8s) && \
-    docker rm $(docker ps -aq --filter name=k8s) && \
-    docker rmi -f nginx:vscabell && \
-    docker rmi -f ftps:vscabell && \
-    docker rmi -f mysql:vscabell && \
-    docker rmi -f phpmyadmin:vscabell && \
-    docker rmi -f wordpress:vscabell && \
-    docker rmi -f grafana:vscabell && \
+    docker stop $(docker ps -aq --filter name=k8s)
+    docker rm $(docker ps -aq --filter name=k8s)
+    docker rmi -f nginx:vscabell
+    docker rmi -f ftps:vscabell
+    docker rmi -f mysql:vscabell
+    docker rmi -f phpmyadmin:vscabell
+    docker rmi -f wordpress:vscabell
+    docker rmi -f grafana:vscabell
     docker rmi -f influxdb:vscabell
-
-    if [ $? -ne 0 ]; then
-        echo "Error"
-        exit
-    fi
 }
 
 install_metallb()
@@ -165,10 +156,10 @@ atribute_ip()
     fi
 }
 
-
 ########## FT SERVICES ##########
 
 echo "" > log_setup.txt
+
 if [ "$1" == "apply" ]; then
     clean_config
     eval $(minikube docker-env)
@@ -187,4 +178,19 @@ else
     build_images
     apply_config
 fi
-minikube dashboard &> /dev/null &
+
+echo ""
+echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
+minikube dashboard &> lala &
+
+echo -e ""
+echo -e " _________________________________"
+echo -e "|            |         |          |"
+echo -e "|  SERVICE   |  USER   | PASSWORD |"
+echo -e "|____________|_________|__________|"
+echo -e "|            |         |          |"
+echo -e "| FTPS       |  admin  |  admin   |"
+echo -e "| WORDPRESS  |  admin  |  admin   |"
+echo -e "| PHPMYADMIN |  admin  |  admin   |"
+echo -e "| GRAFANA    |  admin  |  admin   |"
+echo -e "|____________|_________|__________|"

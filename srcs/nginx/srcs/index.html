@@ -1,11 +1,136 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>FT_SERVICES</title>
+        <meta charset="utf-8">
+        <title>vscabell's ft_services</title>
+        <link href="https://projects.intra.42.fr/assets/42_logo_black-684989d43d629b3c0ff6fd7e1157ee04db9bb7a73fba8ec4e01543d650a1c607.png" rel="icon" type="image/png">
+        <script src="https://kit.fontawesome.com/9a769b63da.js" crossorigin="anonymous"></script>
+        <style>
+            html {
+                font-size: 100%;
+                height: 100%;
+            }
+            body {
+                background: #0d0c1b;
+                box-sizing: border-box;
+                color: #ffffff;
+                font-family: fantasy;
+                height: 100%;
+                line-height: 1.5;
+                margin: 0;
+                padding: 90px;
+                text-align: center;
+            }
+            h1 {
+                color: #dfd6ff;
+                font-size: 4rem;
+                line-height: 1;
+                margin: 0 0 0.2rem 0;
+            }
+            h2 {
+                padding-top: 4rem;
+            }
+            p {
+                margin: 0 0 1rem 0;
+            }
+            h3 {
+                color: #ece7e7;
+                font-size: 1.2rem;
+                margin: 0 0 1rem 0;
+                text-decoration: none;
+            }
+            h4 {
+                color: #ece7e7;
+                font-size: 0.8rem;
+                margin: 0 0 0 0;
+                text-decoration: none;
+            }
+            a {
+                color: #f5eeee;
+            }
+            table {
+                text-align: left;
+                margin: auto;
+                border:"0";
+            }
+            td {
+                padding-bottom: 100px;
+                vertical-align: top;
+            }
+            wp {
+                color: #3461cc;
+                margin-bottom: 20px;
+            }
+            pma {
+                color: #cf5619;
+                margin-bottom: 20px;
+            }
+            ftp {
+                color: #6e6a67;
+                margin-bottom: 20px;
+            }
+            ft {
+                text-align: left;
+                margin: auto;
+                border:"0";
+            }
+
+        </style>
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     </head>
     <body>
-        <div style="text-align:center">
-            <h2 style="color:rgb(127, 34, 139)">VAI TOMA NO CU FT_SERVICES</h1>
-        </div>
+        <h1>FT_SERVICES</h1>
+        <br/>
+
+        <p>This is a System Administration and Networking project.</p>
+        <h5>by vscabell</h5><br/>
+        <span class="iconify" data-icon="logos:kubernetes" data-inline="false" data-width="150" data-height="150"></span>
+        
+
+        <h2>Available services:</h2><br/>
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="25%">
+                    <a style="margin-left: 20px;" href="http://192.168.49.3:5050">
+                        <wp><span class="iconify" data-icon="ion:logo-wordpress" data-inline="false" data-width="100" data-height="100"></span></wp>
+                    <h3><a href="http://192.168.49.3:5050">WordPress</a></h3>
+                    <p>user:<em> admin</em><br/>
+                    password:<em> admin</em></p>
+                </td>
+                <td width="25%">
+                    <a style="margin-left: 20px;" href="http://192.168.49.3:5000">
+                        <pma class="fas fa-database fa-6x"></pma></a>
+                    <h3><a href="http://192.168.49.3:5000">PhpMyAdmin</a></h3>
+                    <p>user:<em> admin</em><br/>
+                    password:<em> admin</em></p>
+                </td>
+                <td width="25%">
+                    <a style="margin-left: 20px;" href="http://192.168.49.3:3000">
+                        <span class="iconify" data-icon="logos:grafana" data-inline="false" data-width="100" data-height="100"></span></a>
+                    <h3><a href="http://192.168.49.3:3000">Grafana</a></h3>
+                    <p>user:<em> admin</em><br/>
+                    password:<em> admin</em></p>
+                </td>
+                <td width="25%">
+                    <a style="margin-left: 20px;" href="http://192.168.49.3:21">
+                        <ftp class="fas fa-download fa-6x"></ftp></a>
+                    <h3><a href="http://192.168.49.3:3000">FTPS</a></h3>
+                    <p>user:<em> admin</em><br/>
+                    password:<em> admin</em></p>
+                </td>
+            </tr>
+        </table>
+
+        <h4>
+            updoad:<em> curl -k --ftp-ssl -u admin:admin ftp://IP:21 -T [FILE]</em><br/>
+                download:<em> curl -k --ftp-ssl -u admin:admin ftp://IP:21/[FILE] -o [NEW_FILE_NAME]</em>
+        </h4>
+        
+        
+        <br></br>
+
+        <p style="bottom: 0; left: 0; width: 100%; text-align: center; font-size: 0.75rem;">
+            © 2021 vscabell
+        </p>
     </body>
 </html>
