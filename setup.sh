@@ -148,7 +148,8 @@ atribute_ip()
     IP=${MINIKUBEIP::-1}"$((${MINIKUBEIP: -1} + 1))" && \
     sed -i "s/FIRSTIP-LASTIP/$IP-$IP/g" ./srcs/k8s/metallb.yaml && \
     sed -i "s/IP/$IP/g" ./srcs/ftps/srcs/vsftpd.conf && \
-    sed -i "s/CLUSTER_IP/$IP/g" ./srcs/mysql/srcs/wordpress.sql
+    sed -i "s/CLUSTER_IP/$IP/g" ./srcs/mysql/srcs/wordpress.sql && \
+    sed -i "s/IP/$IP/g" ./srcs/nginx/srcs/index.html && \
 
     if [ $? -ne 0 ]; then
         echo "Error"
