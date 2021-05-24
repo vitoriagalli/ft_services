@@ -19,16 +19,16 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.
 RUN mkdir -p /etc/telegraf; \
     mv telegraf.conf /etc/telegraf/telegraf.conf
 
-RUN openssl req -x509 -nodes -days 365 \
-    -newkey rsa:2048 \
-    -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/OU=IT/CN=vscabell" \
-    -keyout /etc/ssl/private/nginx-selfsigned.key \
-    -out /etc/ssl/certs/nginx-selfsigned.crt && \
-    chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
+# RUN openssl req -x509 -nodes -days 365 \
+#     -newkey rsa:2048 \
+#     -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/OU=IT/CN=vscabell" \
+#     -keyout /etc/ssl/private/nginx-selfsigned.key \
+#     -out /etc/ssl/certs/nginx-selfsigned.crt && \
+#     chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
 
 RUN mkdir -p /run/nginx; \
-    mv pma-nginx.conf /etc/nginx/nginx.conf 
-    # cp pma-nginx.conf /etc/nginx/conf.d/default.conf
+    # mv pma-nginx.conf /etc/nginx/nginx.conf 
+    mv pma-nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 5000
 
