@@ -182,7 +182,7 @@ fi
 
 echo ""
 echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
-minikube dashboard &> lala &
+minikube dashboard &> /dev/nul &
 
 echo -e ""
 echo -e " _________________________________"
