@@ -182,9 +182,10 @@ fi
 
 echo ""
 echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
-minikube dashboard &> /dev/nul &
+minikube dashboard &> /dev/null &
 
 echo -e ""
+echo -e "\033[1m ~> Available Services \033[0m"
 echo -e " _________________________________"
 echo -e "|            |         |          |"
 echo -e "|  SERVICE   |  USER   | PASSWORD |"
