@@ -14,7 +14,6 @@ spec:
     - name: phpmyadmin
       port: 5000
       protocol: TCP
-    #   targetPort: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,34 +33,8 @@ spec:
     spec:
       containers:
       - name: phpmyadmin
-        # image: phpmyadmin:4.8-apache
         image: phpmyadmin:vscabell
         imagePullPolicy: Never
-        # command: [ "/bin/sh", "-c", "--" ]
-        # args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 5050
           name: phpmyadmin
-        # envFrom:
-        #   - configMapRef:
-        #       name: phpmyadmin-configmap
-      #   volumeMounts:
-      #     - mountPath: /etc/nginx/conf.d/
-      #       name: wp-nginx-conf
-      # volumes:
-      # - name: wp-nginx-conf
-      #   configMap:
-      #     name: phpmyadmin-configmap
-      #     items:
-      #     - key: default.conf
-      #       path: default.conf     
-# ---
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: phpmyadmin-configmap
-# data:
-#   DB_NAME: "phpmyadmin"
-#   DB_USER: "admin"
-#   DB_PASSWORD: "admin"
-#   DB_HOST: "mysql"

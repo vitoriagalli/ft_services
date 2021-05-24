@@ -14,7 +14,6 @@ spec:
     - name: wordpress
       port: 5050
       protocol: TCP
-      # targetPort: 5050
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,17 +33,11 @@ spec:
     spec:
       containers:
       - name: wordpress
-        # image: wordpress:4.8-apache
         image: wordpress:vscabell
         imagePullPolicy: Never
-        # command: [ "/bin/sh", "-c", "--" ]
-        # args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 5050
           name: wordpress
-        # envFrom:
-        #   - configMapRef:
-        #       name: wordpress-configmap
       #   volumeMounts:
       #     - name: mysql-persistent-storage
       #       mountPath: /var/www/wordpress
@@ -52,13 +45,3 @@ spec:
       # - name: mysql-persistent-storage
       #   persistentVolumeClaim:
       #     claimName: mysql-pv-claim
-# ---
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: wordpress-configmap
-# data:
-#   DB_NAME: "wordpress"
-#   DB_USER: "admin"
-#   DB_PASSWORD: "admin"
-#   DB_HOST: "mysql"

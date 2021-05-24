@@ -36,11 +36,8 @@ spec:
     spec:
       containers:
       - name: ftps
-        # image: fauria/vsftpd
         image: ftps:vscabell
         imagePullPolicy: Never
-        # command: [ "/bin/sh", "-c", "--" ]
-        # args: [ "while true; do sleep 30; done;" ]
         ports:
           - name: ftps
             containerPort: 21
