@@ -10,7 +10,7 @@ RUN mkdir -p /etc/telegraf && \
     mv telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN mkdir -p /run/nginx && \
-    mv nginx.conf /etc/nginx/nginx.conf && \
+    mv nginx.conf /etc/nginx/conf.d/default.conf && \
     mv index.html /var/www/index.html
 
 RUN openssl req -x509 -nodes -days 365 \
