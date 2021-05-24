@@ -22,6 +22,13 @@ RUN mkdir -p /etc/telegraf; \
 RUN mkdir -p /run/nginx; \
     mv pma-nginx.conf /etc/nginx/conf.d/default.conf
 
+RUN openssl req -x509 -nodes -days 365 \
+    -newkey rsa:2048 \
+    -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/OU=IT/CN=vscabell" \
+    -keyout /etc/ssl/private/nginx-selfsigned.key \
+    -out /etc/ssl/certs/nginx-selfsigned.crt && \
+    chmod 600 /etc/ssl/private/nginx-selfsigned.key /etc/ssl/certs/nginx-selfsigned.crt
+
 EXPOSE 5000
 
 CMD ["sh", "start.sh"]
