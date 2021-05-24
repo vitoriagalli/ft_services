@@ -14,7 +14,7 @@
                 background: #0d0c1b;
                 box-sizing: border-box;
                 color: #ffffff;
-                font-family: fantasy;
+                font-family: arial;
                 height: 100%;
                 line-height: 1.5;
                 margin: 0;
@@ -30,31 +30,30 @@
             h2 {
                 padding-top: 4rem;
             }
-            p {
-                margin: 0 0 1rem 0;
-            }
             h3 {
                 color: #ece7e7;
                 font-size: 1.2rem;
-                margin: 0 0 1rem 0;
-                text-decoration: none;
             }
             h4 {
-                color: #ece7e7;
-                font-size: 0.8rem;
-                margin: 0 0 0 0;
-                text-decoration: none;
+                font-family: arial, sans-serif;
+                font-size: 0.9rem;
+                color: #d8dad2;
+                font-weight: normal;
+                font-style: normal;
             }
             a {
                 color: #f5eeee;
             }
+            p {
+                margin: 0 0 1rem 0;
+            }
             table {
-                text-align: left;
+                text-align: center;
                 margin: auto;
                 border:"0";
             }
             td {
-                padding-bottom: 100px;
+                padding-bottom: 80px;
                 vertical-align: top;
             }
             wp {
@@ -83,52 +82,46 @@
         <br/>
 
         <p>This is a System Administration and Networking project.</p>
-        <h5>by vscabell</h5><br/>
-        <span class="iconify" data-icon="logos:kubernetes" data-inline="false" data-width="150" data-height="150"></span>
-        
-
-        <h2>Available services:</h2><br/>
+        <span class="iconify" data-icon="logos:kubernetes" data-inline="false" data-width="180" data-height="180"></span>
+        <h4>by vscabell</h4><br/>
+        <h2>Services:</h2><br/>
         <table width="100%" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="25%">
-                    <a style="margin-left: 20px;" href="https://IP:5050">
-                        <wp><span class="iconify" data-icon="wordpress" data-inline="false" data-width="100" data-height="100"></span></wp>
+                <td width="33%">
+                    <a href="https://IP:5050">
+                        <wp><span class="iconify" data-icon="ion:logo-wordpress" data-inline="false" data-width="100" data-height="100"></span></wp>
                     <h3><a href="https://IP:5050">WordPress</a></h3>
-                    <p>user:<em> admin</em><br/>
-                    password:<em> admin</em></p>
+                    <p>user: admin<br/>
+                    password: admin</p>
                 </td>
-                <td width="25%">
-                    <a style="margin-left: 20px;" href="https://IP:5000">
-                        <pma class="fas fa-database fa-6x"></pma></a>
+                <td width="33%">
+                    <a href="https://IP:5000">
+                        <pma><span class="iconify" data-icon="dashicons:database" data-inline="false" data-width="100" data-height="100"></span></pma></a>
                     <h3><a href="https://IP:5000">PhpMyAdmin</a></h3>
-                    <p>user:<em> admin</em><br/>
-                    password:<em> admin</em></p>
+                    <p>user: admin<br/>
+                    password: admin</p>
                 </td>
-                <td width="25%">
-                    <a style="margin-left: 20px;" href="http://IP:3000">
-                        <span class="iconify" data-icon="grafana" data-inline="false" data-width="100" data-height="100"></span></a>
+                <td width="34%">
+                    <a href="http://IP:3000">
+                        <span class="iconify" data-icon="logos:grafana" data-inline="false" data-width="100" data-height="100"></span></a>
                     <h3><a href="http://IP:3000">Grafana</a></h3>
-                    <p>user:<em> admin</em><br/>
-                    password:<em> admin</em></p>
-                </td>
-                <td width="25%">
-                    <a style="margin-left: 20px;" href="http://IP:21">
-                        <ftp class="fas fa-download fa-6x"></ftp></a>
-                    <h3><a href="http://IP:3000">FTPS</a></h3>
-                    <p>user:<em> admin</em><br/>
-                    password:<em> admin</em></p>
+                    <p>user: admin<br/>
+                    password: admin</p>
                 </td>
             </tr>
         </table>
-
-        <h4>
-            updoad:<em> curl -k --ftp-ssl -u admin:admin ftp://IP:21 -T [FILE]</em><br/>
-                download:<em> curl -k --ftp-ssl -u admin:admin ftp://IP:21/[FILE] -o [NEW_FILE_NAME]</em>
-        </h4>
         
-        
+        <a style="margin: 20px;" href="https://IP:80">
+            <ftp><span class="iconify" data-icon="emojione:file-folder" data-inline="false" data-width="100" data-height="100"></span></ftp></a>
+        <h3><a href="https://IP:80">FTPS</a></h3>
+        <p>user: admin<br/>
+        password: admin<br/>
+        <h4> 
+            commands:</br>
+            upload: curl -k --ftp-ssl -u admin:admin ftp://IP:21 -T [FILE]<br/>
+            download: curl -k --ftp-ssl -u admin:admin ftp://IP:21/[FILE] -o [NEW_FILE_NAME]</br>
+        </h4>  
         <br></br>
-
         <p style="bottom: 0; left: 0; width: 100%; text-align: center; font-size: 0.75rem;">
             © 2021 vscabell
         </p>
