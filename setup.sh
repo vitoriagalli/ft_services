@@ -196,16 +196,3 @@ echo -e "| WORDPRESS  |  admin  |  admin   |"
 echo -e "| PHPMYADMIN |  admin  |  admin   |"
 echo -e "| GRAFANA    |  admin  |  admin   |"
 echo -e "|____________|_________|__________|"
-
-
-# COMMANDS TO KILL PROCESSES
-# kubectl exec deploy/ftps -- pkill vsftpd
-# kubectl exec deploy/grafana -- pkill grafana
-# kubectl exec deploy/telegraf -- pkill telegraf
-# kubectl exec deploy/influxdb -- pkill influx
-# kubectl exec deploy/wordpress -- pkill nginx
-# kubectl exec deploy/wordpress -- pkill php-fpm7
-# kubectl exec deploy/phpmyadmin -- pkill nginx
-# kubectl exec deploy/phpmyadmin -- pkill php-fpm7
-# kubectl exec deploy/mariadb -- pkill /usr/bin/mysqld 
-# kubectl exec deploy/nginx -- pkill nginx
