@@ -40,26 +40,26 @@ spec:
           - containerPort: 8086
         volumeMounts:
           - name: influxdb-persistent-storage
-            mountPath: /var/lib/influxdb
+            mountPath: /root/.influxdb
       volumes:
         - name: influxdb-persistent-storage
           persistentVolumeClaim:
             claimName: influxdb-pvc
 ---
-  apiVersion: v1
-  kind: PersistentVolume
-  metadata:
-      name: influxdb-pv
-      labels:
-          type: local
-  spec:
-      storageClassName: manual
-      capacity:
-          storage: 1Gi
-      accessModes:
-          - ReadWriteOnce
-      hostPath:
-          path: "/mnt/influxdb"
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: influxdb-pv
+    labels:
+        type: local
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/influxdb"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
