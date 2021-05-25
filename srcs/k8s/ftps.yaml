@@ -34,6 +34,7 @@ spec:
       labels:
         app: ftps
     spec:
+      hostname: ftps
       containers:
       - name: ftps
         image: ftps:vscabell

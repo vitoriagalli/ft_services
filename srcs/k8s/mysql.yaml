@@ -31,6 +31,7 @@ spec:
       labels:
         app: mysql
     spec:
+      hostname: mysql
       containers:
       - name: mysql
         image: mysql:vscabell
@@ -43,7 +44,7 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mysql-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -63,7 +64,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: mysql-pv-claim
+    name: mysql-pvc
 spec:
     storageClassName: manual
     accessModes:

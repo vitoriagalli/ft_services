@@ -31,6 +31,7 @@ spec:
       labels:
         app: wordpress
     spec:
+      hostname: wordpress
       containers:
       - name: wordpress
         image: wordpress:vscabell

@@ -31,6 +31,7 @@ spec:
       labels:
         app: influxdb
     spec:
+      hostname: influxdb
       containers:
       - name: influxdb
         image: influxdb:vscabell
@@ -38,20 +39,36 @@ spec:
         ports:
           - containerPort: 8086
         volumeMounts:
-          - mountPath: /var/lib/influxdb
-            name: influxdb-pv
+          - name: influxdb-persistent-storage
+            mountPath: /var/lib/influxdb
       volumes:
-        - name: influxdb-pv
+        - name: influxdb-persistent-storage
           persistentVolumeClaim:
             claimName: influxdb-pvc
+---
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+      name: influxdb-pv
+      labels:
+          type: local
+  spec:
+      storageClassName: manual
+      capacity:
+          storage: 1Gi
+      accessModes:
+          - ReadWriteOnce
+      hostPath:
+          path: "/mnt/influxdb"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: influxdb-pvc
+    name: influxdb-pvc
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 1Gi

@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1621720218057,
+  "id": 8,
+  "iteration": 1621906258918,
   "links": [],
   "panels": [
     {
@@ -1051,9 +1051,9 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "ftps-c5d97845d-4w694",
-          "value": "ftps-c5d97845d-4w694"
+          "selected": true,
+          "text": "ftps",
+          "value": "ftps"
         },
         "datasource": "InfluxDB",
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
@@ -1066,7 +1066,7 @@
         "name": "server",
         "options": [],
         "query": "SHOW TAG VALUES FROM system WITH KEY=host",
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1079,8 +1079,8 @@
     ]
   },
   "time": {
-    "from": "2021-05-22T10:59:32.992Z",
-    "to": "2021-05-22T22:59:32.992Z"
+    "from": "now-30m",
+    "to": "now"
   },
   "timepicker": {
     "hidden": false,

@@ -31,6 +31,7 @@ spec:
       labels:
         app: grafana
     spec:
+      hostname: grafana
       containers:
       - name: grafana
         image: grafana:vscabell
