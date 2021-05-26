@@ -34,8 +34,7 @@ kubectl exec deploy/wordpress -- pkill nginx
 kubectl exec deploy/wordpress -- pkill php-fpm7
 kubectl exec deploy/phpmyadmin -- pkill nginx
 kubectl exec deploy/phpmyadmin -- pkill php-fpm7
-kubectl exec deploy/mysql -- pkill mysqld 
+kubectl exec deploy/mariadb -- pkill /usr/bin/mysqld 
 kubectl exec deploy/nginx -- pkill nginx
 
 
-----> implementar statefull set
