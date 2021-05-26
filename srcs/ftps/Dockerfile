@@ -20,7 +20,8 @@ RUN openssl req -x509 -nodes -days 365 \
     chmod 600 /etc/ssl/private/ftps-selfsigned.key /etc/ssl/certs/ftps-selfsigned.crt
 
 RUN adduser -D admin && \
-    echo admin:admin | chpasswd
+    echo admin:admin | chpasswd && \
+    chown ftp:ftp -R /srv/
 
 EXPOSE 21 30000
 
