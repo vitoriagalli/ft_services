@@ -44,36 +44,37 @@ spec:
             containerPort: 21
           - name: ftps-data
             containerPort: 30000
-        # volumeMounts:
-        #   - mountPath: "/home/vsftpd"
-        #     name: ftps-pv-storage
-        # env:
-        #   - name: FTP_USER
-        #     value: "user"
-        #   - name: FTP_PASS
-        #     value: "pass1234"
+        volumeMounts:
+          - name: ftps-persistent-storage
+            mountPath: /home/admin
+      volumes:
+        - name: ftps-persistent-storage
+          persistentVolumeClaim:
+            claimName: ftps-pvc
 # ---
-# kind: PersistentVolume
 # apiVersion: v1
+# kind: PersistentVolume
 # metadata:
-#   name: ftps-pv-volume
+#   name: ftps-pv
 #   labels:
 #     type: local
 # spec:
+#   storageClassName: manual
 #   capacity:
-#     storage: 10Gi
+#       storage: 1Gi
 #   accessModes:
-#     - ReadWriteOnce
-#   hostPath:
-#     path: "/tmp/data"
-# ---
-#   kind: PersistentVolumeClaim
-#   apiVersion: v1
-#   metadata:
-#     name: ftps-pv-claim
-#   spec:
-#     accessModes:
 #       - ReadWriteOnce
-#     resources:
-#       requests:
-#         storage: 1Gi
+#   hostPath:
+#     path: "/mnt/ftps"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: ftps-pvc
+spec:
+    # storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 1Gi
