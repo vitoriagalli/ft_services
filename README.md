@@ -5,6 +5,7 @@ FTPS
 
 upload:
 
+<!-- curl ftps://admin:admin@192.168.49.3:21 -T README.md  -->
 curl -k --ftp-ssl -u admin:admin ftp://192.168.49.3:21 -T [FILE]
 
 download:
