@@ -39,12 +39,12 @@ spec:
         ports:
         - containerPort: 5050
           name: phpmyadmin
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #     - /usr/bin/telegraf
-        #     - /usr/sbin/php-fpm7
-        #     - /usr/sbin/nginx -g 'daemon off;'
-        #   periodSeconds: 10
-        #   failureThreshold: 1
-        #   initialDelaySeconds: 10
+        livenessProbe:
+          exec:
+            command:
+              - /bin/sh
+              - c
+              - pgrep -f telegraf; pgrep -f php-fpm7; pgrep -f nginx
+          periodSeconds: 10
+          failureThreshold: 1
+          initialDelaySeconds: 15
