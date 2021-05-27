@@ -54,6 +54,9 @@ kubectl exec deploy/QUALQUER CONTAINER -- pkill telegraf
 
 
 
+>>> quando da kill no mysql e precisa restartar, perde-se a persistencia 
+
+
 
 minikube addons list
 habilitar default-storage-class!!
