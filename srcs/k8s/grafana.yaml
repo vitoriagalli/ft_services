@@ -41,9 +41,9 @@ spec:
         livenessProbe:
           exec:
             command:
-              - /bin/sh
+              - bin/sh
               - -c
-              - pgrep -f telegraf; pgrep -f grafana-server
-          periodSeconds: 10
+              - ./liveness.sh
+          periodSeconds: 15
           failureThreshold: 1
-          initialDelaySeconds: 15
+          initialDelaySeconds: 30

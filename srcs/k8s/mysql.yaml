@@ -44,12 +44,12 @@ spec:
         livenessProbe:
           exec:
             command:
-              - /bin/sh
+              - bin/sh
               - -c
-              - pgrep -f telegraf; pgrep -f mysqld
-          periodSeconds: 10
+              - ./liveness.sh
+          periodSeconds: 15
           failureThreshold: 1
-          initialDelaySeconds: 15
+          initialDelaySeconds: 30
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
