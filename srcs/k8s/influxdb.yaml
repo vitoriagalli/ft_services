@@ -41,6 +41,15 @@ spec:
         volumeMounts:
           - name: influxdb-persistent-storage
             mountPath: /root/.influxdb
+        livenessProbe:
+          exec:
+            command:
+              - /bin/sh
+              - -c
+              - pgrep -f telegraf; pgrep -f influxd
+          periodSeconds: 10
+          failureThreshold: 1
+          initialDelaySeconds: 15
       volumes:
         - name: influxdb-persistent-storage
           persistentVolumeClaim:

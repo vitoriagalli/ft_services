@@ -47,6 +47,15 @@ spec:
         volumeMounts:
           - name: ftps-persistent-storage
             mountPath: /home/admin
+        livenessProbe:
+          exec:
+            command:
+              - /bin/sh
+              - -c
+              - pgrep -f telegraf; pgrep -f vsftpd
+          periodSeconds: 10
+          failureThreshold: 1
+          initialDelaySeconds: 15
       volumes:
         - name: ftps-persistent-storage
           persistentVolumeClaim:

@@ -61,3 +61,17 @@ kubectl exec deploy/QUALQUER CONTAINER -- pkill telegraf
 minikube addons list
 habilitar default-storage-class!!
 kubectll get hpa
+
+
+
+
+------ ERRO NA PRIMEIRA INICIALIZAÇÃO ------
+
+Start minikube...
+[sudo] password for user42: 
+😄  minikube v1.20.0 on Ubuntu 18.04 (vbox/amd64)
+✨  Using the docker driver based on user configuration
+
+💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: deadline exceeded running "docker version --format -": signal: killed
+💡  Suggestion: Restart the Docker service
+📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
