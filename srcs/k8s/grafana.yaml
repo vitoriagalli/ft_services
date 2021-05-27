@@ -38,21 +38,3 @@ spec:
         imagePullPolicy: Never
         ports:
           - containerPort: 3000
-#         volumeMounts:
-#           - mountPath: /var/lib/grafana
-#             name: grafana-pv
-#       volumes:
-#         - name: grafana-pv
-#           persistentVolumeClaim:
-#             claimName: grafana-pvc
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: grafana-pvc
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 1Gi
