@@ -168,6 +168,9 @@ if [ "$1" == "apply" ]; then
     atribute_ip
     build_images
     apply_config
+elif [ "$1" == "config" ]; then
+    kubectl delete -f srcs/k8s --recursive
+    kubectl apply -f srcs/k8s --recursive
 elif [ "$1" == "del" ]; then
     delete_environment
 else
