@@ -49,7 +49,7 @@ spec:
               - ./liveness.sh
           periodSeconds: 15
           failureThreshold: 1
-          initialDelaySeconds: 30
+          initialDelaySeconds: 80
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:

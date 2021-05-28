@@ -46,8 +46,8 @@ spec:
               - -c
               - ./liveness.sh
           periodSeconds: 15
-          failureThreshold: 1
-          initialDelaySeconds: 30
+          failureThreshold: 2
+          initialDelaySeconds: 80
       #   volumeMounts:
       #     - name: mysql-persistent-storage
       #       mountPath: /var/www/wordpress
