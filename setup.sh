@@ -3,9 +3,9 @@
 install_minikube()
 {
     sudo apt-get update -y && \
-	sudo apt-get install -y docker && \
-	wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
-	sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
+    wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
+    sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
+    rm -rf minikube-linux-amd64 
 
     if [ $? -ne 0 ]; then
         echo "Error"
@@ -18,10 +18,8 @@ start_environment()
     echo ""
     echo -e "\033[1mStart minikube...\033[0m"
 
-    # wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
-    # chmod +x minikube-linux-amd64 && \
-    # sudo mv minikube-linux-amd64 /usr/local/bin/minikube && \
-    minikube --cpus=2 --memory 2200 start --driver=docker && \
+    sudo chmod 666 /var/run/docker.sock && \
+    minikube --cpus=2 --memory=2200 start --driver=docker && \
     minikube addons enable storage-provisioner && \
     minikube addons enable metrics-server && \
     minikube addons enable dashboard && \
