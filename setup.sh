@@ -1,11 +1,26 @@
 #! /bin/bash
 
+install_minikube()
+{
+    sudo apt-get update -y && \
+	sudo apt-get install -y docker && \
+	wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
+	sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
+
+    if [ $? -ne 0 ]; then
+        echo "Error"
+        exit
+    fi
+}
+
 start_environment()
 {
     echo ""
     echo -e "\033[1mStart minikube...\033[0m"
 
-    sudo chmod 666 /var/run/docker.sock && \
+    # wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
+    # chmod +x minikube-linux-amd64 && \
+    # sudo mv minikube-linux-amd64 /usr/local/bin/minikube && \
     minikube --cpus=2 --memory 2200 start --driver=docker && \
     minikube addons enable storage-provisioner && \
     minikube addons enable metrics-server && \
@@ -23,13 +38,9 @@ delete_environment()
     echo ""
     echo -e "\033[1mDelete minikube...\033[0m"
 
-    minikube delete && \
-    rm -rf ~/.kube/config
-
-    if [ $? -ne 0 ]; then
-        echo "Error"
-        exit
-    fi
+    minikube delete
+    sudo pkill -9 nginx
+    rm -rf ~/.kube
 }
 
 apply_config()
@@ -175,6 +186,7 @@ elif [ "$1" == "del" ]; then
     delete_environment
 else
     delete_environment
+    install_minikube
     start_environment
     eval $(minikube docker-env)
     install_metallb
