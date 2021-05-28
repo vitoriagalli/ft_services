@@ -6,10 +6,12 @@
         <link href="https://projects.intra.42.fr/assets/42_logo_black-684989d43d629b3c0ff6fd7e1157ee04db9bb7a73fba8ec4e01543d650a1c607.png" rel="icon" type="image/png">
         <script src="https://kit.fontawesome.com/9a769b63da.js" crossorigin="anonymous"></script>
         <style>
+
             html {
                 font-size: 100%;
                 height: 100%;
             }
+
             body {
                 background: #0d0c1b;
                 box-sizing: border-box;
@@ -21,19 +23,19 @@
                 padding: 90px;
                 text-align: center;
             }
+
             h1 {
                 color: #dfd6ff;
                 font-size: 4rem;
                 line-height: 1;
                 margin: 0 0 0.2rem 0;
             }
-            h2 {
-                padding-top: 4rem;
-            }
+
             h3 {
                 color: #ece7e7;
                 font-size: 1.2rem;
             }
+
             h4 {
                 font-family: arial, sans-serif;
                 font-size: 0.9rem;
@@ -41,87 +43,136 @@
                 font-weight: normal;
                 font-style: normal;
             }
+
             a {
+                font-size: 2rem;
                 color: #f5eeee;
             }
+
             p {
+                /* font-size: 1rem; */
                 margin: 0 0 1rem 0;
             }
+
             table {
                 text-align: center;
                 margin: auto;
                 border:"0";
             }
+            
             td {
-                padding-bottom: 80px;
+                padding-bottom: 40px;
                 vertical-align: top;
             }
-            wp {
-                color: #3461cc;
-                margin-bottom: 20px;
-            }
+
             pma {
                 color: #cf5619;
-                margin-bottom: 20px;
             }
+
+            wp {
+                color: #3461cc;
+            }
+
             ftp {
-                color: #6e6a67;
-                margin-bottom: 20px;
+                font-size: 0.85rem;
             }
-            ft {
-                text-align: left;
-                margin: auto;
-                border:"0";
+
+            m {
+                font-size: 0.80rem;
+            }
+
+            .services {
+                margin-top: 75px;
+                padding-bottom: 30px;
+                padding: 0 60px;
+                text-align: center;
+                border-radius: 20px;
+                background-color: #0d0c1b;
+                transition: all .4s ease-in-out;
+                /* box-shadow: 0 0 25px 0 rgba(25, 29, 167, 0.17) */
+            }
+
+            .services .icon {
+                margin-bottom: -21px;
+                transform: translateY(-50%);
+                text-align: center
+            }
+
+            .services:hover h4,
+            .services:hover p {
+                color: #fff
+            }
+
+            .speedup:hover {
+                box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
+                cursor: pointer;
+                background-image: linear-gradient(-45deg, #3a044b 0%, #041d4b 100%)
             }
 
         </style>
         <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
     </head>
     <body>
-        <h1>FT_SERVICES</h1>
-        <br/>
 
+        <h1>FT_SERVICES</h1>
+        <br></br>
         <p>This is a System Administration and Networking project.</p>
         <span class="iconify" data-icon="logos:kubernetes" data-inline="false" data-width="180" data-height="180"></span>
-        <h4>by vscabell</h4><br/>
-        <h2>Services:</h2><br/>
+        <h4>deployed with Kubernetes</br>by vscabell</h4><br/>
+
         <table width="100%" cellspacing="0" cellpadding="0">
-            <tr>
-                <td width="33%">
-                    <a href="http://IP:5050">
-                        <wp><span class="iconify" data-icon="ion:logo-wordpress" data-inline="false" data-width="100" data-height="100"></span></wp>
-                    <h3><a href="http://IP:5050">WordPress</a></h3>
-                    <p>user: admin<br/>
-                    password: admin</p>
-                </td>
-                <td width="33%">
-                    <a href="http://IP:5000">
-                        <pma><span class="iconify" data-icon="dashicons:database" data-inline="false" data-width="100" data-height="100"></span></pma></a>
-                    <h3><a href="http://IP:5000">PhpMyAdmin</a></h3>
-                    <p>user: admin<br/>
-                    password: admin</p>
-                </td>
-                <td width="34%">
-                    <a href="http://IP:3000">
-                        <span class="iconify" data-icon="logos:grafana" data-inline="false" data-width="100" data-height="100"></span></a>
-                    <h3><a href="http://IP:3000">Grafana</a></h3>
-                    <p>user: admin<br/>
-                    password: admin</p>
-                </td>
-            </tr>
+            
+            <td class="services speedup" width="50%">
+                <br></br>
+                <a href="http://IP:5050">
+                <wp><span class="iconify" data-icon="ion:logo-wordpress" data-inline="false" data-width="100" data-height="100"></span></wp>
+                <h3><a href="http://IP:5050">WordPress</a></h3>
+                <p>user: admin<br/>
+                password: admin<br/>
+                <m>
+                    collaborators<br/>
+                    user1 : user1 | user2 : user2 | user3 : user3<br/>
+                </m>
+                <a href="http://IP:5050/wp-login.php"><m>wp login</m></a><br/>
+                </p>
+            </td>
+
+            <td class="services speedup" width="50%">
+                <br></br>
+                <a href="http://IP:5000">
+                <pma><span class="iconify" data-icon="dashicons:database" data-inline="false" data-width="100" data-height="100"></span></pma>
+                <h3><a href="http://IP:5000">phpMyAdmin</a></h3>
+                <p>user: admin<br/>
+                password: admin</p>
+            </td>
+
         </table>
-        
-        <a style="margin: 20px;" href="http://IP:80">
-            <ftp><span class="iconify" data-icon="emojione:file-folder" data-inline="false" data-width="100" data-height="100"></span></ftp></a>
-        <h3><a href="http://IP:80">FTPS</a></h3>
-        <p>user: admin<br/>
-        password: admin<br/>
-        <h4> 
-            commands:</br>
-            upload: curl -k --ftp-ssl -u admin:admin ftp://IP:21 -T [FILE]<br/>
-            download: curl -k --ftp-ssl -u admin:admin ftp://IP:21/[FILE] -o [NEW_FILE_NAME]</br>
-        </h4>  
-        <br></br>
+
+        </br></br>
+
+        <table width="100%" cellspacing="0" cellpadding="0">
+
+            <td class="services speedup" width="50%">
+                <br></br>
+                <a href="http://IP:3000">
+                <span class="iconify" data-icon="logos:grafana" data-inline="false" data-width="100" data-height="100"></span>
+                <h3><a href="http://IP:3000">Grafana</a></h3>
+                <p>user: admin<br/>
+                password: admin</p>
+            </td>
+
+            <td class="services speedup" width="50%">
+                <br></br>
+                <a href="http://IP:80">
+                <span class="iconify" data-icon="emojione:file-folder" data-inline="false" data-width="100" data-height="100"></span>
+                <h3><a href="http://IP:80">FTPS</a></h3>
+                UPLOAD:<br/><ftp>curl -k --ftp-ssl -u admin:admin ftp://IP:21 -T file</ftp><br/>
+                DOWNLOAD:<br/><ftp>curl -k --ftp-ssl -u admin:admin ftp://IP:21/file -o new_file_name</ftp>
+            </td>
+        </table>  
+
+        </br></br>
         <p style="bottom: 0; left: 0; width: 100%; text-align: center; font-size: 0.75rem;">
             © 2021 vscabell
         </p>
