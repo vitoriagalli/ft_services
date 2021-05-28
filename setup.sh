@@ -183,19 +183,30 @@ else
     apply_config
 fi
 
-echo ""
 echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
 minikube dashboard &> /dev/null &
 
+MINIKUBEIP=$(minikube ip)
+IP=${MINIKUBEIP::-1}"$((${MINIKUBEIP: -1} + 1))"
+
 echo -e ""
 echo -e "\033[1m ~> Available Services \033[0m"
-echo -e " _________________________________"
-echo -e "|            |         |          |"
-echo -e "|  SERVICE   |  USER   | PASSWORD |"
-echo -e "|____________|_________|__________|"
-echo -e "|            |         |          |"
-echo -e "| FTPS       |  admin  |  admin   |"
-echo -e "| WORDPRESS  |  admin  |  admin   |"
-echo -e "| PHPMYADMIN |  admin  |  admin   |"
-echo -e "| GRAFANA    |  admin  |  admin   |"
-echo -e "|____________|_________|__________|"
+echo -e " _____________________________________________________________"
+echo -e "|            |         |          |                           |"
+echo -e "|  SERVICE   |  USER   | PASSWORD |            URL            |"
+echo -e "|____________|_________|__________|___________________________|"
+echo -e "|            |         |          |                           |"
+echo -e "| NGINX      |         |          | http://$IP:80    |"
+echo -e "|            |         |          | https://$IP:443  |"
+echo -e "|            |         |          |                           |"
+echo -e "| WORDPRESS  |  admin  |  admin   | https://$IP:5050 |"
+echo -e "|            |  user1  |  user1   |                           |"
+echo -e "|            |  user2  |  user2   |                           |"
+echo -e "|            |  user3  |  user3   |                           |"
+echo -e "|            |         |          |                           |"
+echo -e "| PHPMYADMIN |  admin  |  admin   | https://$IP:5000 |"
+echo -e "|            |         |          |                           |"
+echo -e "| GRAFANA    |  admin  |  admin   | http://$IP:3000  |"
+echo -e "|            |         |          |                           |"
+echo -e "| FTPS       |  admin  |  admin   | ftp://$IP:21     |"
+echo -e "|____________|_________|__________|___________________________|"

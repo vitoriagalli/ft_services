@@ -54,7 +54,9 @@ kubectl exec deploy/QUALQUER CONTAINER -- pkill telegraf
 
 
 
->>> quando da kill no mysql e precisa restartar, perde-se a persistencia 
+>>> quando da kill no mysql e precisa restartar, perde-se a persistencia
+
+quando da kill no php-fpm7, perde-se a persistencia! pq??????
 
 
 
@@ -75,3 +77,13 @@ Start minikube...
 💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: deadline exceeded running "docker version --format -": signal: killed
 💡  Suggestion: Restart the Docker service
 📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+
+
+
+--------
+
+MINIKUBE INICIANDO NO LOCALHOST
+
+
+não aparece opcao para habilitar addons do metallb
