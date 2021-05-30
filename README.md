@@ -44,7 +44,7 @@ $ ./setup
 
 
 
-
+![flow](https://user-images.githubusercontent.com/56961723/120088927-fbc7c700-c0cb-11eb-8da9-b44a80f7f85e.png)
 
 
 COMMANDS TO KILL PROCESSES
