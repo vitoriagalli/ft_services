@@ -42,6 +42,7 @@ $ cd ft_services
 $ ./setup.sh
 ```
 
+#### System flowchart
 
 ![flow](https://user-images.githubusercontent.com/56961723/120088927-fbc7c700-c0cb-11eb-8da9-b44a80f7f85e.png)
 
@@ -50,6 +51,25 @@ $ ./setup.sh
 
 <details>
   <summary>More info</summary>
+  
+  ##### Terminal
+  ![terminal](https://user-images.githubusercontent.com/56961723/120122211-d98e8180-c17d-11eb-81cf-236ef3e1cb37.jpg)
+  
+  ##### Kubernetes Dashboard
+  ![kubernetes_dash](https://user-images.githubusercontent.com/56961723/120122213-db584500-c17d-11eb-8325-5ec126bace6e.jpg)
+  
+  ##### Nginx Index
+  ![index](https://user-images.githubusercontent.com/56961723/120122206-d4313700-c17d-11eb-9e39-dac739a839a4.jpg)
+  
+  ##### Wordpress
+  ![word](https://user-images.githubusercontent.com/56961723/120122218-ddba9f00-c17d-11eb-9c1b-6bc18a42f5e1.jpg)
+  
+  ##### PhpMyAdmin
+  ![php](https://user-images.githubusercontent.com/56961723/120122216-dc897200-c17d-11eb-89d0-fbc6c3bc2715.jpg)
+  
+  ##### Grafana Dashboard
+  ![dash](https://user-images.githubusercontent.com/56961723/120122208-d7c4be00-c17d-11eb-8296-d8b8e06608eb.jpg)
+  
 
 COMMANDS TO KILL PROCESSES
 
@@ -73,15 +93,9 @@ kubectl exec deploy/phpmyadmin -- pkill nginx
 kubectl exec deploy/phpmyadmin -- pkill php-fpm7
 kubectl exec deploy/phpmyadmin -- pkill telegraf
 
-kubectl exec deploy/mysql -- pkill mysqld  NÃO PERSISTE
-kubectl exec deploy/mysql -- pkill mysql    NÃO PERSISTE
-kubectl exec deploy/mysql -- pkill telegraf  NÃO PERSISTE
-
-
-
-
-- quando da kill no mysql e precisa restartar, perde-se a persistencia
-quando da kill no php-fpm7, perde-se a persistencia! pq??????
+kubectl exec deploy/mysql -- pkill mysqld
+kubectl exec deploy/mysql -- pkill mysql
+kubectl exec deploy/mysql -- pkill telegraf
 
 
 
@@ -89,9 +103,6 @@ README for all componets
 https://github.com/charMstr/ft_services
 
 
-
-
 ERRORS
 
 - first ./setup.sh is not initializatin docker (restart or reinstall?)
-- kill mysql/mysqld lost the data!! kill the pod is OK
