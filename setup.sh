@@ -18,8 +18,8 @@ start_environment()
     echo ""
     echo -e "\033[1mStart minikube...\033[0m"
 
-    sudo chmod 666 /var/run/docker.sock && \
-    # sudo systemctl restart docker && \
+    sudo systemctl restart docker && \
+    sudo chown $USER /var/run/docker.sock && \
     minikube --cpus=2 --memory=2200 start --driver=docker && \
     minikube addons enable storage-provisioner && \
     minikube addons enable metrics-server && \
