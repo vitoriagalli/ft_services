@@ -73,9 +73,9 @@ kubectl exec deploy/phpmyadmin -- pkill nginx
 kubectl exec deploy/phpmyadmin -- pkill php-fpm7
 kubectl exec deploy/phpmyadmin -- pkill telegraf
 
-kubectl exec deploy/mysql -- pkill mysqld ?
-kubectl exec deploy/mysql -- pkill mysql ?
-kubectl exec deploy/mysql -- pkill telegraf
+kubectl exec deploy/mysql -- pkill mysqld  NÃO PERSISTE
+kubectl exec deploy/mysql -- pkill mysql    NÃO PERSISTE
+kubectl exec deploy/mysql -- pkill telegraf  NÃO PERSISTE
 
 
 
@@ -94,4 +94,4 @@ https://github.com/charMstr/ft_services
 ERRORS
 
 - first ./setup.sh is not initializatin docker (restart or reinstall?)
-- 
+- kill mysql/mysqld lost the data!! kill the pod is OK
