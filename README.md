@@ -39,36 +39,46 @@ A bash script is used to launch the cluster.
 ```bash
 $ git clone https://github.com/vscabell/ft_services
 $ cd ft_services
-$ ./setup
+$ ./setup.sh
 ```
-
 
 
 ![flow](https://user-images.githubusercontent.com/56961723/120088927-fbc7c700-c0cb-11eb-8da9-b44a80f7f85e.png)
 
 
+
+
+<details>
+  <summary>More info</summary>
+
 COMMANDS TO KILL PROCESSES
 
-- Se comporta conforme o esperado
 kubectl exec deploy/nginx -- pkill nginx
-kubectl exec deploy/grafana -- pkill grafana
+kubectl exec deploy/nginx -- pkill telegraf
+
+kubectl exec deploy/grafana -- pkill grafana-server
+kubectl exec deploy/grafana -- pkill telegraf
+
 kubectl exec deploy/ftps -- pkill vsftpd
+kubectl exec deploy/ftps -- pkill telegraf
+
 kubectl exec deploy/influxdb -- pkill influx
+kubectl exec deploy/influxdb -- pkill telegraf
+
 kubectl exec deploy/wordpress -- pkill nginx
-kubectl exec deploy/phpmyadmin -- pkill nginx
-
-- FTPS esta demorando muito para reiniciar!
-kubectl exec deploy/ftps -- pkill vsftpd
-
-- MYSQL não esta reiniciando
-kubectl exec deploy/mysql -- pkill mysqld 
-
-- quando da kill nesses comandos o container não restarta
-kubectl exec deploy/phpmyadmin -- pkill php-fpm7
 kubectl exec deploy/wordpress -- pkill php-fpm7
+kubectl exec deploy/wordpress -- pkill telegraf
 
-- o container continua de pé e para de fornecer informação
-kubectl exec deploy/QUALQUER CONTAINER -- pkill telegraf
+kubectl exec deploy/phpmyadmin -- pkill nginx
+kubectl exec deploy/phpmyadmin -- pkill php-fpm7
+kubectl exec deploy/phpmyadmin -- pkill telegraf
+
+kubectl exec deploy/mysql -- pkill mysqld ?
+kubectl exec deploy/mysql -- pkill mysql ?
+kubectl exec deploy/mysql -- pkill telegraf
+
+
+
 
 - quando da kill no mysql e precisa restartar, perde-se a persistencia
 quando da kill no php-fpm7, perde-se a persistencia! pq??????
@@ -77,3 +87,11 @@ quando da kill no php-fpm7, perde-se a persistencia! pq??????
 
 README for all componets
 https://github.com/charMstr/ft_services
+
+
+
+
+ERRORS
+
+- first ./setup.sh is not initializatin docker (restart or reinstall?)
+- 
