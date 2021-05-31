@@ -108,7 +108,7 @@ build_images()
 
     echo -n "InfluxDB image " && \
     docker build srcs/influxdb -t influxdb:vscabell >> log_setup.txt
-    echo "created" && \
+    echo "created"
 
     if [ $? -ne 0 ]; then
         echo ""
@@ -159,7 +159,7 @@ atribute_ip()
     sed -i "s/FIRSTIP-LASTIP/$IP-$IP/g" ./srcs/k8s/metallb.yaml && \
     sed -i "s/IP/$IP/g" ./srcs/ftps/srcs/vsftpd.conf && \
     sed -i "s/CLUSTER_IP/$IP/g" ./srcs/mysql/srcs/wordpress.sql && \
-    sed -i "s/IP/$IP/g" ./srcs/nginx/srcs/index.html && \
+    sed -i "s/IP/$IP/g" ./srcs/nginx/srcs/index.html
 
     if [ $? -ne 0 ]; then
         echo "Error"
