@@ -8,6 +8,7 @@ fi
 
 mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql
 mysqld --user=root --skip_networking=0 &
+sleep 3
 
 mysql << EOF
 CREATE DATABASE IF NOT EXISTS wordpress;
