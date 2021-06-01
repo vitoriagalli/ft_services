@@ -60,28 +60,28 @@ spec:
         - name: ftps-persistent-storage
           persistentVolumeClaim:
             claimName: ftps-pvc
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: ftps-pv
-#   labels:
-#     type: local
-# spec:
-#   storageClassName: manual
-#   capacity:
-#       storage: 1Gi
-#   accessModes:
-#       - ReadWriteOnce
-#   hostPath:
-#     path: "/mnt/ftps"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ftps-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+      storage: 1Gi
+  accessModes:
+      - ReadWriteOnce
+  hostPath:
+    path: "/mnt/ftps"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: ftps-pvc
 spec:
-    # storageClassName: manual
+    storageClassName: manual
     accessModes:
         - ReadWriteOnce
     resources:
