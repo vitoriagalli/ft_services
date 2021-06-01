@@ -2,10 +2,9 @@
 
 install_minikube()
 {
-    sudo apt-get update -y && \
     wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
     sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
-    rm -rf minikube-linux-amd64 
+    rm -rf minikube-linux-amd64
 
     if [ $? -ne 0 ]; then
         echo "Error"
@@ -38,7 +37,7 @@ delete_environment()
     echo -e "\033[1mDelete minikube...\033[0m"
 
     minikube delete
-    sudo pkill -9 nginx
+    sudo pkill nginx
     rm -rf ~/.kube
 }
 
