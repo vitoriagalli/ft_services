@@ -19,7 +19,7 @@ start_environment()
 
     sudo systemctl restart docker && \
     sudo chown $USER /var/run/docker.sock && \
-    minikube --cpus=2 --memory=3000 start --driver=docker && \
+    minikube --cpus=2 --memory=2500 start --driver=docker && \
     minikube addons enable storage-provisioner && \
     minikube addons enable metrics-server && \
     minikube addons enable dashboard && \
