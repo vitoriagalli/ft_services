@@ -96,13 +96,3 @@ kubectl exec deploy/phpmyadmin -- pkill telegraf
 kubectl exec deploy/mysql -- pkill mysqld
 kubectl exec deploy/mysql -- pkill mysql
 kubectl exec deploy/mysql -- pkill telegraf
-
-
-
-README for all componets
-https://github.com/charMstr/ft_services
-
-
-ERRORS
-
-- first ./setup.sh is not initializatin docker (restart or reinstall?)
