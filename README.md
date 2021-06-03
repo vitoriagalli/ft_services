@@ -69,30 +69,3 @@ $ ./setup.sh
   
   ##### Grafana Dashboard
   ![dash](https://user-images.githubusercontent.com/56961723/120122208-d7c4be00-c17d-11eb-8296-d8b8e06608eb.jpg)
-  
-
-COMMANDS TO KILL PROCESSES
-
-kubectl exec deploy/nginx -- pkill nginx
-kubectl exec deploy/nginx -- pkill telegraf
-
-kubectl exec deploy/grafana -- pkill grafana-server
-kubectl exec deploy/grafana -- pkill telegraf
-
-kubectl exec deploy/ftps -- pkill vsftpd
-kubectl exec deploy/ftps -- pkill telegraf
-
-kubectl exec deploy/influxdb -- pkill influx
-kubectl exec deploy/influxdb -- pkill telegraf
-
-kubectl exec deploy/wordpress -- pkill nginx
-kubectl exec deploy/wordpress -- pkill php-fpm7
-kubectl exec deploy/wordpress -- pkill telegraf
-
-kubectl exec deploy/phpmyadmin -- pkill nginx
-kubectl exec deploy/phpmyadmin -- pkill php-fpm7
-kubectl exec deploy/phpmyadmin -- pkill telegraf
-
-kubectl exec deploy/mysql -- pkill mysqld
-kubectl exec deploy/mysql -- pkill mysql
-kubectl exec deploy/mysql -- pkill telegraf
