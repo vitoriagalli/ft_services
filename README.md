@@ -51,21 +51,21 @@ $ ./setup.sh
 
 <details>
   <summary>More info</summary>
-  
+
   ##### Terminal
   ![terminal](https://user-images.githubusercontent.com/56961723/120122211-d98e8180-c17d-11eb-81cf-236ef3e1cb37.jpg)
-  
+
   ##### Kubernetes Dashboard
   ![kubernetes_dash](https://user-images.githubusercontent.com/56961723/120122213-db584500-c17d-11eb-8325-5ec126bace6e.jpg)
-  
+
   ##### Nginx Index
   ![index](https://user-images.githubusercontent.com/56961723/120122206-d4313700-c17d-11eb-9e39-dac739a839a4.jpg)
-  
+
   ##### Wordpress
   ![word](https://user-images.githubusercontent.com/56961723/120122218-ddba9f00-c17d-11eb-9c1b-6bc18a42f5e1.jpg)
-  
+
   ##### PhpMyAdmin
   ![php](https://user-images.githubusercontent.com/56961723/120122216-dc897200-c17d-11eb-89d0-fbc6c3bc2715.jpg)
-  
+
   ##### Grafana Dashboard
   ![dash](https://user-images.githubusercontent.com/56961723/120122208-d7c4be00-c17d-11eb-8296-d8b8e06608eb.jpg)
