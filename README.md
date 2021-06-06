@@ -34,6 +34,17 @@ The access to the cluster is made through a load balancer.
 
 ### Usage
 
+#### Prerequisites
+
+Run on Linux environment
+
+the scritp will install the follow packages:
+- Docker
+- Minikube
+- Kubectl
+
+#### Build Instructions
+
 A bash script is used to launch the cluster.
 
 ```bash
