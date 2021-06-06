@@ -4,23 +4,22 @@ install_environment()
 {
     echo ""
     echo -e "\033[1mInstall environment...\033[0m"
+
     echo ""
-
     echo -e "\033[1mInstall docker...\033[0m"
-    # sudo apt-get update && \
-    sudo apt-get -y install apt-transport-https ca-certificates curl gnupg lsb-release && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo \
-    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
-    sudo apt-get -y install docker && \
-	sudo apt-get install docker-ce="5:18.09.1~3-0~ubuntu-xenial" docker-ce-cli="5:18.09.1~3-0~ubuntu-xenial" containerd.io
 
+    curl -fsSL https://get.docker.com -o get-docker.sh && \
+    sudo sh get-docker.sh && \
+    rm get-docker.sh && \
+
+    echo "" && \
     echo -e "\033[1mInstall minikube and kubectl...\033[0m" && \
+
     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
     sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
     curl -LO https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl && \
-    rm -rf minikube-linux-amd64
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
+    rm -rf minikube-linux-amd64 kubectl
 
     if [ $? -ne 0 ]; then
         echo "Error"
@@ -61,24 +60,23 @@ uninstall_environment()
 {
     echo ""
     echo -e "\033[1mUninstall environment...\033[0m"
+
     echo ""
-
-    echo -e "\033[1mUninstall docker...\033[0m"
-    sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
-    sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
-    sudo rm -rf /var/lib/docker /etc/docker
-    sudo rm /etc/apparmor.d/docker
-    sudo rm -rf ~/.docker
-    sudo groupdel docker
-    sudo rm -rf /var/run/docker.sock
-
     echo -e "\033[1mUninstall minikube and kubectl...\033[0m"
+
     minikube delete
-    rm -r ~/.kube ~/.minikube
-    sudo rm /usr/local/bin/localkube /usr/local/bin/minikube
-    systemctl stop '*kubelet*.mount'
-    sudo docker system prune -af --volumes
-    sudo rm /usr/local/bin/kubectl
+    sudo rm -rf \
+    /usr/local/bin/minikube \
+    /usr/local/bin/kubectl \
+    ~/.kube \
+    ~/.minikube
+
+    echo ""
+    echo -e "\033[1mUninstall docker...\033[0m"
+    
+    sudo apt-get autoremove -y --purge docker-engine docker
+    sudo rm -rf /var/lib/docker
+    sudo rm -rf /var/lib/containerd
 }
 
 apply_config()
@@ -208,6 +206,7 @@ atribute_ip()
 
 show_services()
 {
+    echo ""
     echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
     minikube dashboard &> /dev/null &
 
@@ -256,11 +255,12 @@ elif [ "$1" == "show" ]; then
     show_services
 elif [ "$1" == "del" ]; then
     delete_environment
+elif [ "$1" == "install" ]; then
+    install_environment
 elif [ "$1" == "uninstall" ]; then
     uninstall_environment
 else
     delete_environment
-    # install_environment
     start_environment
     eval $(minikube docker-env)
     install_metallb

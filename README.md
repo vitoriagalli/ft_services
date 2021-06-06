@@ -34,15 +34,6 @@ The access to the cluster is made through a load balancer.
 
 ### Usage
 
-#### Prerequisites
-
-Run on Linux environment
-
-the scritp will install the follow packages:
-- Docker
-- Minikube
-- Kubectl
-
 #### Build Instructions
 
 A bash script is used to launch the cluster.
@@ -50,8 +41,28 @@ A bash script is used to launch the cluster.
 ```bash
 $ git clone https://github.com/vscabell/ft_services
 $ cd ft_services
-$ ./setup.sh
+$ bash setup.sh
 ```
+
+#### Prerequisites
+
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+
+If you don't have these packages installed, it can be provided by running the follow command.
+
+```bash
+$ bash setup.sh install
+```
+
+When you don't need those packages anymore, you can uninstall them by running.
+
+```bash
+$ bash setup.sh uninstall
+```
+
+Run on Linux environment :penguin:
 
 #### System flowchart
 
