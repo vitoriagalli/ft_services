@@ -31,4 +31,4 @@ RUN openssl req -x509 -nodes -days 365 \
 
 EXPOSE 5000
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]

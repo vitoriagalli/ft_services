@@ -11,4 +11,4 @@ RUN mkdir -p /etc/telegraf; \
 
 EXPOSE 3306
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]

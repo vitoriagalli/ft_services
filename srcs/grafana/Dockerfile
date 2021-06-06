@@ -22,4 +22,4 @@ ENV PATH=/grafana-7.5.6/bin:$PATH
 
 EXPOSE 3000
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]

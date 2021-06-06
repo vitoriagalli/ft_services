@@ -11,4 +11,4 @@ RUN mkdir -p /etc/telegraf; \
 
 EXPOSE 8086
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]

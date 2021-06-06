@@ -22,4 +22,4 @@ RUN openssl req -x509 -nodes -days 365 \
 
 EXPOSE 80 443
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]

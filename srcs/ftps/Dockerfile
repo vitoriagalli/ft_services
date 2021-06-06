@@ -25,4 +25,4 @@ RUN adduser -D admin && \
 
 EXPOSE 21 30000
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["sh", "start.sh"]
