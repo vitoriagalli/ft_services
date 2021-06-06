@@ -25,7 +25,7 @@ The access to the cluster is made through a load balancer.
 
 `FTPS`: a protocol, secured by SSL, used for the transfer of computer files from a server to a client on a computer network.
 
-`Grafana`: a analytics and interactive visualization web application. Allows you to query, view, alert, and explore your metrics from Time Series Database Storage(TSDB).
+`Grafana`: a analytics and interactive visualization web application. Allows you to query, view, alert, and explore your metrics from Time Series Database Storage (TSDB).
 
 `InfluxDB`: a time series database optimized for fast, high-availability storage and retrieval of time series data.
 
