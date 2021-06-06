@@ -22,8 +22,14 @@ install_environment()
     rm -rf minikube-linux-amd64 kubectl
 
     if [ $? -ne 0 ]; then
+        echo ""
         echo "Error"
         exit
+    else
+        echo ""
+        echo "Packages installed!"
+        echo "Now you can run"
+        echo -e "\033[1m$ bash setup.sh\033[0m"
     fi
 }
 
@@ -73,7 +79,7 @@ uninstall_environment()
 
     echo ""
     echo -e "\033[1mUninstall docker...\033[0m"
-    
+
     sudo apt-get autoremove -y --purge docker-engine docker
     sudo rm -rf /var/lib/docker
     sudo rm -rf /var/lib/containerd
