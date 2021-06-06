@@ -1,9 +1,26 @@
 #! /bin/bash
 
-install_minikube()
+install_environment()
 {
+    echo ""
+    echo -e "\033[1mInstall environment...\033[0m"
+    echo ""
+
+    echo -e "\033[1mInstall docker...\033[0m"
+    sudo apt-get update
+    sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    apt-get install docker-ce docker-ce-cli containerd.io
+
+    echo -e "\033[1mInstall minikube and kubectl...\033[0m"
     wget -q https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
     sudo install minikube-linux-amd64 /usr/local/bin/minikube && \
+    https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl && \
     rm -rf minikube-linux-amd64
 
     if [ $? -ne 0 ]; then
@@ -39,6 +56,30 @@ delete_environment()
     minikube delete
     sudo pkill nginx
     rm -rf ~/.kube
+}
+
+uninstall_environment()
+{
+    echo ""
+    echo -e "\033[1mUninstall environment...\033[0m"
+    echo ""
+
+    echo -e "\033[1mUninstall docker...\033[0m"
+    sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
+    sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
+    sudo rm -rf /var/lib/docker /etc/docker
+    sudo rm /etc/apparmor.d/docker
+    sudo groupdel docker
+    sudo rm -rf /var/run/docker.sock
+
+    echo -e "\033[1mUninstall minikube and kubectl...\033[0m"
+    minikube delete
+    rm -r ~/.kube ~/.minikube
+    sudo rm /usr/local/bin/localkube /usr/local/bin/minikube
+    systemctl stop '*kubelet*.mount'
+    sudo docker system prune -af --volumes
+    sudo rm /usr/local/bin/kubectl
+
 }
 
 apply_config()
@@ -166,6 +207,38 @@ atribute_ip()
     fi
 }
 
+show_services()
+{
+    echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
+    minikube dashboard &> /dev/null &
+
+    MINIKUBEIP=$(minikube ip)
+    IP=${MINIKUBEIP::-1}"$((${MINIKUBEIP: -1} + 1))"
+
+    echo -e ""
+    echo -e "\033[1m ~> Available Services \033[0m"
+    echo -e " _____________________________________________________________"
+    echo -e "|            |         |          |                           |"
+    echo -e "|  SERVICE   |  USER   | PASSWORD |            URL            |"
+    echo -e "|____________|_________|__________|___________________________|"
+    echo -e "|            |         |          |                           |"
+    echo -e "| NGINX      |         |          | http://$IP:80    |"
+    echo -e "|            |         |          | https://$IP:443  |"
+    echo -e "|            |         |          |                           |"
+    echo -e "| WORDPRESS  |  admin  |  admin   | https://$IP:5050 |"
+    echo -e "|            |  user1  |  user1   |                           |"
+    echo -e "|            |  user2  |  user2   |                           |"
+    echo -e "|            |  user3  |  user3   |                           |"
+    echo -e "|            |         |          |                           |"
+    echo -e "| PHPMYADMIN |  admin  |  admin   | https://$IP:5000 |"
+    echo -e "|            |         |          |                           |"
+    echo -e "| GRAFANA    |  admin  |  admin   | http://$IP:3000  |"
+    echo -e "|            |         |          |                           |"
+    echo -e "| FTPS       |  admin  |  admin   | ftp://$IP:21     |"
+    echo -e "|____________|_________|__________|___________________________|"
+    echo -e ""
+}
+
 ########## FT SERVICES ##########
 
 echo "" > log_setup.txt
@@ -180,44 +253,20 @@ if [ "$1" == "apply" ]; then
 elif [ "$1" == "config" ]; then
     kubectl delete -f srcs/k8s --recursive
     kubectl apply -f srcs/k8s --recursive
+elif [ "$1" == "show" ]; then
+    show_services
 elif [ "$1" == "del" ]; then
     delete_environment
+elif [ "$1" == "uninstall" ]; then
+    uninstall_environment
 else
     delete_environment
-    install_minikube
+    install_environment
     start_environment
     eval $(minikube docker-env)
     install_metallb
     atribute_ip
     build_images
     apply_config
+    show_services
 fi
-
-echo -e "\033[1mOpening kubernetes web dashboard ...\033[0m"
-minikube dashboard &> /dev/null &
-
-MINIKUBEIP=$(minikube ip)
-IP=${MINIKUBEIP::-1}"$((${MINIKUBEIP: -1} + 1))"
-
-echo -e ""
-echo -e "\033[1m ~> Available Services \033[0m"
-echo -e " _____________________________________________________________"
-echo -e "|            |         |          |                           |"
-echo -e "|  SERVICE   |  USER   | PASSWORD |            URL            |"
-echo -e "|____________|_________|__________|___________________________|"
-echo -e "|            |         |          |                           |"
-echo -e "| NGINX      |         |          | http://$IP:80    |"
-echo -e "|            |         |          | https://$IP:443  |"
-echo -e "|            |         |          |                           |"
-echo -e "| WORDPRESS  |  admin  |  admin   | https://$IP:5050 |"
-echo -e "|            |  user1  |  user1   |                           |"
-echo -e "|            |  user2  |  user2   |                           |"
-echo -e "|            |  user3  |  user3   |                           |"
-echo -e "|            |         |          |                           |"
-echo -e "| PHPMYADMIN |  admin  |  admin   | https://$IP:5000 |"
-echo -e "|            |         |          |                           |"
-echo -e "| GRAFANA    |  admin  |  admin   | http://$IP:3000  |"
-echo -e "|            |         |          |                           |"
-echo -e "| FTPS       |  admin  |  admin   | ftp://$IP:21     |"
-echo -e "|____________|_________|__________|___________________________|"
-echo -e ""
